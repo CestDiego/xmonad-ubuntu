@@ -80,10 +80,19 @@ setxkbmap -option 'ctrl:no caps'
 
 if [ -z "$(pgrep emacs)" ] ; then
     emacs &
+else
+    subl &
 fi
 
 # Set the wallpaper from Unity, if using arch linux this goes to the merde
 nautilus &
-/opt/extras.ubuntu.com/variety/bin/variety &
+
+# Check first if variety is Installed
+if [ -f "/opt/extras.ubuntu.com/variety/bin/variety" ] ; then
+   /opt/extras.ubuntu.com/variety/bin/variety &
+fi
+
+# Exit frigging ibus
+ibus exit
 
 echo "0" | sudo tee -a /sys/devices/platform/asus-nb-wmi/leds/asus::kbd_backlight/brightness > /dev/null
