@@ -13,21 +13,39 @@
 #
 # Please review the readme file to find out exactly what it does and does not 
 # do. Or, visit the repository for more information: 
-# https://github.com/davidbrewer/xmonad-ubuntu-conf
+# https://github.com/cestdiego/xmonad-ubuntu
 # 
-# Author: David Brewer
+# Author: Diego Berrocal 
+# 
+# 
+# This script is heavily inspired by the one from @davidbrewer
+# 
+# 
 
-# echo "Adding PPA to allow install of Synapse on Trusty"
-# sudo apt-add-repository ppa:synapse-core/testing
-# sudo apt-get update
+echo "Adding PPA to allow install of Variety from Peter Levi on Trusty"
+sudo apt-add-repository ppa:peterlevi/ppa -y
+sudo apt-get update
 
 echo "Installing required packages..."
-sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar nitrogen compton stalonetray moreutils consolekit ssh-askpass-gnome xbacklight ranger htop xsel acpi rxvt-unicode-256color dmenu -y
+sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar nitrogen compton stalonetray moreutils consolekit ssh-askpass-gnome xbacklight ranger htop xsel acpi rxvt-unicode-256color dmenu variety -y
 
 echo "Creating xmonad xsession configuration..."
 sudo mv /usr/share/xsessions/xmonad.desktop /usr/share/xsessions/xmonad.desktop.original
 sudo cp ~/.xmonad/xmonad.desktop /usr/share/xsessions
 sudo cp ~/.xmonad/images/custom_xmonad_badge.png /usr/share/unity-greeter
+
+echo "Copying .urxvt configuration to home directory"
+cp -R ~/.xmonad/.urxvt ~/.urxvt
+
+echo "Backing up .Xresources as .Xresources.bak you can check the differences for yourself"
+mv ~/.Xresources{,.bak}
+
+echo "Copying .Xresources"
+cp ~/.xmonad/.Xresources ~/.Xresources
+
+echo "Copying Compton Configuration File"
+cp ~/.xmonad/compton.conf ~/.config/compton.conf
+
 
 echo "Linking to customized gnome 2 configuration..."
 mv ~/.gtkrc-2.0 ~/gtkrc-2.0.original

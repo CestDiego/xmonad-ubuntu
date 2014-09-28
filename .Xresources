@@ -1,0 +1,160 @@
+! RATPOISON COLORS
+*background:#1f1f1f
+*foreground:#e8e9ca
+
+*color0:    #232323
+*color1:    #8b3e2f
+*color2:    #526f33
+*color3:    #8B814C
+*color4:    #4A708B
+*color5:    #7A378B
+*color6:    #528B8B
+*color7:    #999999
+
+*color8:    #4c4c4c
+*color9:    #d75f00
+*color10:   #8ea433
+*color11:   #EEE685
+*color12:   #9AC0CD
+*color13:   #9F79EE
+*color14:   #79CDCD
+*color15:   #E8E9CA
+
+! first disable Keycap Picture insert mode
+URxvt.iso14755:         false
+URxvt.iso14755_52:      false
+
+URxvt*termName: rxvt-unicode-256color
+! URxvt*termName: rxvt-unicode
+
+! urxvt term by term ################################
+URxvt*perl-lib:			/usr/lib/urxvt/perl
+URxvt*perl-ext-common:		default,matcher,clipboard,font-size
+! ,tabbedex
+URxvt*perl-matcher: 		1
+URxvt*matcher-button: 		3
+URxvt*url-launcher:		/usr/bin/google-chrome-stable
+!URxvt*matcher.button: 1
+!URxvt*matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+! urxvt*cursorUnderline: 1
+Urxvt*letterspace: -5
+!urxvt*fading: 			10
+!urxvt*fadeColor: 		#000000	
+URxvt*cursorBlink:		true
+URxvt*scrollBar:		false
+URxvt*depth:			32 
+! URxvt.background:               [95]#000000
+URxvt*internalBorder: 		5
+URxvt*dynamicColors: on
+URxvt.urgentOnBell:  true
+
+
+! For Notify-send
+URxvt*urgentOnBell: true
+URxvt*visualBell:   false
+
+! Font change settings
+URxvt.font:               xft:Monaco:size=13
+URxvt.boldfont:           xft:Monaco:size=13:Bold
+
+URxvt.keysym.C-equal:	perl:font-size:increase
+URxvt.keysym.C-minus:   perl:font-size:decrease
+URxvt.keysym.C-S-equal:   perl:font-size:incglobal
+URxvt.keysym.C-S-minus: perl:font-size:decglobal
+URxvt.keysym.C-0:      perl:font-size:reset
+Urxvt.font-size.step:  8
+
+
+! Para cut and paste 
+! URxvt.perl-ext-common: ...,clipboard
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+! nose para q del copy and paste
+URxvt.copyCommand:  xsel -ib
+URxvt.pasteCommand: xsel -ob
+
+Xft.antialias: 1
+Xft.autohint: 0
+Xft.dpi: 96
+Xft.hinting: 1
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
+
+!----TAB MANAGEMENT----------------------------------------------------------
+! Urxvt.tabbed.new-button:        true
+
+! URxvt.tabbed.no-tabbedex-keys:  true
+
+! URxvt.keysym.Control-t: perl:tabbedex:new_tab
+! URxvt.keysym.Control-Tab: perl:tabbedex:next_tab
+! URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
+! URxvt.keysym.Control-Shift-Left: perl:tabbedex:move_tab_left
+! URxvt.keysym.Control-Shift-Right: perl:tabbedex:move_tab_right
+! URxvt.keysym.Control-n: perl:tabbedex:rename_tab
+
+
+!---------_EMAAACS BABEEEE---------------------------------------------------
+
+! Emacs.font: Monaco
+! Emacs.fontBackend: xft
+! Emacs.menuBar: off
+! Emacs.toolBar: 
+! Emacs.verticalScrollBars: off
+
+!xclock----------------------------------------------------------------------
+xclock*majorColor: #9a875f
+xclock*minorColor: #9a875f
+xclock*minuteColor: #9a875f
+xclock*hourColor: #9a875f
+xclock*secondColor: #9a875f
+
+!xmessage-------------------------------------------------------------------
+xmessage*international:                true
+!xcalc-----------------------------------------------------------------------
+
+xcalc*geometry:                        200x275
+xcalc.ti.bevel.background:             #111111
+xcalc.ti.bevel.screen.background:      #000000
+xcalc.ti.bevel.screen.DEG.background:  #000000
+xcalc.ti.bevel.screen.DEG.foreground:  LightSeaGreen
+xcalc.ti.bevel.screen.GRAD.background: #000000
+xcalc.ti.bevel.screen.GRAD.foreground: LightSeaGreen
+xcalc.ti.bevel.screen.RAD.background:  #000000
+xcalc.ti.bevel.screen.RAD.foreground:  LightSeaGreen
+xcalc.ti.bevel.screen.INV.background:  #000000
+xcalc.ti.bevel.screen.INV.foreground:  Red
+xcalc.ti.bevel.screen.LCD.background:  #000000
+xcalc.ti.bevel.screen.LCD.foreground:  LightSeaGreen
+xcalc.ti.bevel.screen.LCD.shadowWidth: 0
+xcalc.ti.bevel.screen.M.background:    #000000
+xcalc.ti.bevel.screen.M.foreground:    LightSeaGreen
+xcalc.ti.bevel.screen.P.background:    #000000
+xcalc.ti.bevel.screen.P.foreground:    Yellow
+xcalc.ti.Command.foreground:  White
+xcalc.ti.Command.background:  #777777
+xcalc.ti.button5.background:  Orange3
+xcalc.ti.button19.background: #611161
+xcalc.ti.button18.background: #611161
+xcalc.ti.button20.background: #611111
+!uncomment to change label on division button
+!xcalc.ti.button20.label:      /
+xcalc.ti.button25.background: #722222
+xcalc.ti.button30.background: #833333
+xcalc.ti.button35.background: #944444
+xcalc.ti.button40.background: #a55555
+xcalc.ti.button22.background: #222262
+xcalc.ti.button23.background: #222262
+xcalc.ti.button24.background: #222272
+xcalc.ti.button27.background: #333373
+xcalc.ti.button28.background: #333373
+xcalc.ti.button29.background: #333373
+xcalc.ti.button32.background: #444484
+xcalc.ti.button33.background: #444484
+xcalc.ti.button34.background: #444484
+xcalc.ti.button37.background: #555595
+xcalc.ti.button38.background: #555595
+xcalc.ti.button39.background: #555595
+XCalc*Cursor:                 hand2
+XCalc*ShapeStyle:             rectangle
