@@ -14,7 +14,7 @@ Config {
   -- Set font and default foreground/background colors. Note that
   -- the height of xmobar is controlled by the font you use.
   font = "xft:Monaco-12",
-  bgColor = "#232323",
+  bgColor = "#1f1f1f",
   fgColor = "grey",
 
   -- Position is top left, taking up 95% of screen.
@@ -53,8 +53,6 @@ Config {
       "-h", "green",
       "-l", "red"
     ] 10,
-
-    Run Com "/bin/bash" ["-c", "~/.xmonad/scripts/bar-battery.sh"] "Bar_Battery" 10,
 
     -- To get volume information, we run a custom bash script.
     -- This is because the built-in volume support in xmobar is disabled
