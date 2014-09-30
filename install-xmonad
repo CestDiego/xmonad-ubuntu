@@ -27,55 +27,44 @@ mv ~/.xmonad{,.old}
 
 echo "\n Cloning @cestdiego's repo... \n"
 
-git clone --recursive git@github.com:CestDiego/xmonad-ubuntu.git ~/.emacs.d
+git clone --recursive git@github.com:CestDiego/xmonad-ubuntu.git ~/.xmonad
 
 
-if [ -z "$(pgrep emacs)" ] ; then
-    echo "Your emacs installation is valid"
-    sleep 0.2
-    echo "Proceding...."
-else
-    echo "Adding emacs ppa from cassou"
-    sudo add-apt-repository ppa:cassou/emacs -y
-    echo "Updating repos"
-    sudo apt-get update
-    echo "Installing Emacs"
-    sudo apt-get install emacs24 emacs24-el emacs24-common-non-dfsg -y
-fi
+echo "Installation Starting\n"
 
 if [ -f "/opt/extras.ubuntu.com/variety/bin/variety" ] ; then
     if ps aux | grep variety > /dev/null then
-        echo "Variety is already installed"
+        echo "\n Variety is already installed\n"
     else
-        echo "Adding PPA to allow install of Variety from Peter Levi on Trusty"
+        echo "\n Adding PPA to allow install of Variety from Peter Levi on Trusty\n"
         sudo apt-add-repository ppa:peterlevi/ppa -y
     fi
 fi
 
-echo "Updating repositories"
+echo "\n Updating repositories\n"
 sudo apt-get update
 
-echo "Installing required packages..."
+echo "\n Installing required packages...\n"
 sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar nitrogen \
  compton stalonetray moreutils consolekit ssh-askpass-gnome xbacklight ranger htop xsel \
  acpi rxvt-unicode-256color dmenu scrot variety -y
 
-echo "Creating xmonad xsession configuration..."
+echo "\n Creating xmonad xsession configuration...\n"
 sudo mv /usr/share/xsessions/xmonad.desktop /usr/share/xsessions/xmonad.desktop.original
 sudo cp ~/.xmonad/xmonad.desktop /usr/share/xsessions
 sudo cp ~/.xmonad/images/custom_xmonad_badge.png /usr/share/unity-greeter
 
-echo "Copying .urxvt configuration to home directory"
-cp -R ~/.xmonad/.urxvt ~/.urxvt
+echo "\n Symbolic Linking .urxvt configuration to home directory \n"
+ln -s ~/.xmonad/.urxvt ~/.urxvt
 
-echo "Backing up .Xresources as .Xresources.bak you can check the differences for yourself"
-mv ~/.Xresources{,.bak}
+echo "\n Backing up .Xresources as .Xresources.old you can check the differences for yourself\n"
+mv ~/.Xresources{,.old}
 
-echo "Copying .Xresources"
-cp ~/.xmonad/.Xresources ~/.Xresources
+echo "Symbolic Linking .Xresources"
+ln -s ~/.xmonad/.Xresources ~/.Xresources
 
-echo "Copying Compton Configuration File"
-cp ~/.xmonad/compton.conf ~/.config/compton.conf
+echo "Symbolic Linking Compton Configuration File"
+ln -s ~/.xmonad/compton.conf ~/.config/compton.conf
 
 
 echo "Linking to customized gnome 2 configuration..."
