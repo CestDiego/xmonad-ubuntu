@@ -22,12 +22,43 @@
 # 
 # 
 
-echo "Adding PPA to allow install of Variety from Peter Levi on Trusty"
-sudo apt-add-repository ppa:peterlevi/ppa -y
+echo "Backing up old ~/.xmonad as ~/.xmonad.old"
+mv ~/.xmonad{,.old}
+
+echo "\n Cloning @cestdiego's repo... \n"
+
+git clone --recursive git@github.com:CestDiego/xmonad-ubuntu.git ~/.emacs.d
+
+
+if [ -z "$(pgrep emacs)" ] ; then
+    echo "Your emacs installation is valid"
+    sleep 0.2
+    echo "Proceding...."
+else
+    echo "Adding emacs ppa from cassou"
+    sudo add-apt-repository ppa:cassou/emacs -y
+    echo "Updating repos"
+    sudo apt-get update
+    echo "Installing Emacs"
+    sudo apt-get install emacs24 emacs24-el emacs24-common-non-dfsg -y
+fi
+
+if [ -f "/opt/extras.ubuntu.com/variety/bin/variety" ] ; then
+    if ps aux | grep variety > /dev/null then
+        echo "Variety is already installed"
+    else
+        echo "Adding PPA to allow install of Variety from Peter Levi on Trusty"
+        sudo apt-add-repository ppa:peterlevi/ppa -y
+    fi
+fi
+
+echo "Updating repositories"
 sudo apt-get update
 
 echo "Installing required packages..."
-sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar nitrogen compton stalonetray moreutils consolekit ssh-askpass-gnome xbacklight ranger htop xsel acpi rxvt-unicode-256color dmenu variety -y
+sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar nitrogen \
+ compton stalonetray moreutils consolekit ssh-askpass-gnome xbacklight ranger htop xsel \
+ acpi rxvt-unicode-256color dmenu scrot variety -y
 
 echo "Creating xmonad xsession configuration..."
 sudo mv /usr/share/xsessions/xmonad.desktop /usr/share/xsessions/xmonad.desktop.original

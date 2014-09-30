@@ -174,12 +174,13 @@ startupWorkspace = "1:Emacs"  -- which workspace do you want to be on after laun
                    -- Remember to install the urxvtcd script that checks if there is a daemon running
 myScratchpads =
               -- [ NS "terminal" "urxvtc -name terminal -e tmux attach"     (resource =? "terminal") myPosition
-              [ NS "terminal" "urxvtcd -name terminal"                    (resource =? "terminal") myPosition
+              [ NS "terminal" "urxvtcd -name terminal"                    (resource =? "terminal") myTermPosition
               , NS "music" "urxvtcd -name music -e ncmpcpp"               (resource =? "music")    myPositionBigger
               , NS "alsa" "urxvtcd -name alsa -e alsamixer"               (resource =? "alsa")    myPositionBigger
               , NS "rtorrent" "urxvtcd -name rtorrent -e rtorrent"        (resource =? "rtorrent") myPosition
               ] where
                 myPosition = customFloating $ W.RationalRect (1/3) (1/3) (1/3) (1/3)
+                myTermPosition = customFloating $ W.RationalRect (1/3) (1/5) (2/3) (1/3)
                 myPositionBigger = customFloating $ W.RationalRect (1/2) (1/2) (1/2) (1/2)  
 
 
@@ -447,7 +448,7 @@ myKeyBindings =
         , ("M-M1-o",            runOrCopy "urxvtcd -name htop -e htop" (resource =? "htop"))
         , ("M-f",               raiseMaybe (runInTerm "-name ranger" "ranger") (resource =? "ranger"))
         , ("M-S-t",             raiseMaybe (runInTerm "-name newsbeuter" "newsbeuter") (resource =? "newsbeuter"))
-        , ("M-S-j",             raiseMaybe (runInTerm "-name julia" "julia") (resource =? "julia"))
+        , ("M-C-j",             raiseMaybe (runInTerm "-name julia" "julia") (resource =? "julia"))
         , ("M-v",               raiseMaybe (runInTerm "-name weechat" "weechat-curses") (resource =? "weechat"))
         , ("<Print>",           spawn " sleep 0.2; scrot -e 'mv $f ~/Pictures/Screenshots/'& mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
         , ("M-<Print>",         spawn " sleep 0.2; scrot -s -e 'mv $f ~/Pictures/Screenshots/'& mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
