@@ -23,50 +23,50 @@
 # 
 
 echo "Backing up old ~/.xmonad as ~/.xmonad.old"
-mv ~/.xmonad{,.old}
+mv ~/.xmonad{,.old};
 
 echo "\n Cloning @cestdiego's repo... \n"
 
-git clone --recursive git@github.com:CestDiego/xmonad-ubuntu.git ~/.xmonad
+git clone --recursive https://github.com/CestDiego/xmonad-ubuntu.git ~/.xmonad;
 
 
 echo "Installation Starting\n"
 
 if [ -f "/opt/extras.ubuntu.com/variety/bin/variety" ] ; then
-    if ps aux | grep variety > /dev/null then
-        echo "\n Variety is already installed\n"
+    if ps aux | grep variety > /dev/null; then
+        echo "\n Variety is already installed\n";
     else
-        echo "\n Adding PPA to allow install of Variety from Peter Levi on Trusty\n"
-        sudo apt-add-repository ppa:peterlevi/ppa -y
+        echo "\n Adding PPA to allow install of Variety from Peter Levi on Trusty\n";
+        sudo apt-add-repository ppa:peterlevi/ppa -y;
     fi
 fi
 
 echo "\n Updating repositories\n"
-sudo apt-get update
+sudo apt-get update;
 
 echo "\n Installing required packages...\n"
 sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar nitrogen \
  compton stalonetray moreutils consolekit ssh-askpass-gnome xbacklight ranger htop xsel \
- acpi rxvt-unicode-256color dmenu scrot variety -y
+ acpi rxvt-unicode-256color dmenu scrot variety -y ;
 
 echo "\n Creating xmonad xsession configuration...\n"
-sudo mv /usr/share/xsessions/xmonad.desktop /usr/share/xsessions/xmonad.desktop.original
-sudo cp ~/.xmonad/xmonad.desktop /usr/share/xsessions
-sudo cp ~/.xmonad/images/custom_xmonad_badge.png /usr/share/unity-greeter
+sudo mv /usr/share/xsessions/xmonad.desktop /usr/share/xsessions/xmonad.desktop.original ;
+sudo cp ~/.xmonad/xmonad.desktop /usr/share/xsessions ;
+sudo cp ~/.xmonad/images/custom_xmonad_badge.png /usr/share/unity-greeter;
 
 echo "\n Symbolic Linking .urxvt configuration to home directory \n"
-ln -s ~/.xmonad/.urxvt ~/.urxvt
+ln -s ~/.xmonad/.urxvt ~/.urxvt;
 
 echo "\n Backing up .Xresources as .Xresources.old you can check the differences for yourself\n"
-mv ~/.Xresources{,.old}
+mv ~/.Xresources{,.old} ;
 
 echo "Symbolic Linking .Xresources"
-ln -s ~/.xmonad/.Xresources ~/.Xresources
+ln -s ~/.xmonad/.Xresources ~/.Xresources;
 
 echo "Symbolic Linking Compton Configuration File"
-ln -s ~/.xmonad/compton.conf ~/.config/compton.conf
+ln -s ~/.xmonad/compton.conf ~/.config/compton.conf;
 
 
 echo "Linking to customized gnome 2 configuration..."
-mv ~/.gtkrc-2.0 ~/gtkrc-2.0.original
-ln -s .xmonad/.gtkrc-2.0 ~/.gtkrc-2.0
+mv ~/.gtkrc-2.0 ~/gtkrc-2.0.original;
+ln -s .xmonad/.gtkrc-2.0 ~/.gtkrc-2.0;
