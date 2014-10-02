@@ -88,12 +88,8 @@ fi
 nautilus &
 
 # Check first if variety is Installed
-if [ -f "/opt/extras.ubuntu.com/variety/bin/variety" ] ; then
-    if ps aux | grep variety > /dev/null then
-        echo "variety initializing"
-    else
-        /opt/extras.ubuntu.com/variety/bin/variety &
-    fi
+if [ -z "$(pgrep variety)" ] ; then
+    /opt/extras.ubuntu.com/variety/bin/variety &
 fi
 
 
@@ -101,6 +97,7 @@ echo "0" | sudo tee -a /sys/devices/platform/asus-nb-wmi/leds/asus::kbd_backligh
 
 exec ~/.xmonad/scripts/bar_battery.sh &
 
+prime-indicator &&
 
 # Exit frigging ibus
 sleep 20
