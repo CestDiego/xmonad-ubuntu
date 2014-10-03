@@ -52,6 +52,7 @@ import XMonad.Hooks.ICCCMFocus
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
 import Data.Ratio ((%))
+import Data.List ---Clickable workspaces
 
 -- Layouts
 import XMonad.Layout.ZoomRow (zoomRow, zoomIn, zoomOut, zoomReset, ZoomMessage(ZoomFullToggle))
@@ -78,11 +79,7 @@ import XMonad.Prompt (defaultXPConfig, XPConfig(..), XPPosition(Top), Direction1
 myModMask            = mod4Mask       -- changes the mod key to "super"
 myBorderWidth        = 0              -- width of border around windows
 myTerminal           = "urxvt"   -- which terminal software to use
-myIMRosterTitle      = "Buddy List"   -- title of roster on IM workspace
-                                      -- use "Buddy List" for Pidgin, but
-                                      -- "Contact List" for Empathy
--- Styles
--- myFont          = "-artwiz-nu-medium-*-normal-*-11-*-*-*-*-*-*-*"
+
 myFont          = "xft:Monaco"
 myColorBG       = "#1f1f1f"
 myColorWhite    = "#eddcd3"
@@ -120,49 +117,6 @@ myGSConfig colorizer  = (buildDefaultGSConfig myGridConfig)
     }
 
 {-
-  Xmobar configuration variables. These settings control the appearance
-  of text which xmonad is sending to xmobar via the DynamicLog hook.
--}
-
-myTitleColor     = "#eeeeee"  -- color of window title
-myTitleLength    = 80         -- truncate window title to this length
-myCurrentWSColor = "#e6744c"  -- color of active workspace
-myVisibleWSColor = "#c185a7"  -- color of inactive workspace
-myUrgentWSColor  = "#cc0000"  -- color of workspace with 'urgent' window
-myCurrentWSLeft  = "["        -- wrap active workspace with these
-myCurrentWSRight = "]"
-myVisibleWSLeft  = "("        -- wrap inactive workspace with these
-myVisibleWSRight = ")"
-myUrgentWSLeft  = "{"         -- wrap urgent workspace with these
-myUrgentWSRight = "}"
-
---------------------------------------------------------------------------------------------------------------------
--- DZEN LOG RULES for workspace names, layout image, current program title
---------------------------------------------------------------------------------------------------------------------
-myLogHook h = dynamicLogWithPP ( defaultPP
-	{
-		  ppCurrent		= dzenColor color15 background .	pad
-		, ppVisible		= dzenColor color14 background . 	pad
-		, ppHidden		= dzenColor color14 background . 	pad
-		, ppHiddenNoWindows	= dzenColor background background .	pad
-		, ppWsSep		= ""
-		, ppSep			= "    "
-		, ppLayout		= wrap "^ca(1,xdotool key alt+space)" "^ca()" . dzenColor color2 background .
-				(\x -> case x of
-					"Full"				->	"^i(/home/sunn/.xmonad/dzen2/layout_full.xbm)"
-					"Spacing 5 ResizableTall"	->	"^i(/home/sunn/.xmonad/dzen2/layout_tall.xbm)"
-					"ResizableTall"			->	"^i(/home/sunn/.xmonad/dzen2/layout_tall.xbm)"
-					"SimplestFloat"			->	"^i(/home/sunn/.xmonad/dzen2/mouse_01.xbm)"
-					"Circle"			->	"^i(/home/sunn/.xmonad/dzen2/full.xbm)"
-					_				->	"^i(/home/sunn/.xmonad/dzen2/grid.xbm)"
-				) 
---		, ppTitle	=  wrap "^ca(1,xdotool key alt+shift+x)^fg(#D23D3D)^fn(fkp)x ^fn()" "^ca()" . dzenColor foreground background . shorten 40 . pad
-		, ppTitle	=  wrap "^ca(1,xdotool key alt+shift+x)" "^ca()" . dzenColor color15 background . shorten 40 . pad
-		, ppOrder	=  \(ws:l:t:_) -> [ws,l, t]
-		, ppOutput	=   hPutStrLn h
-	} )
-
-{-
   Workspace configuration. Here you can change the names of your
   workspaces. Note that they are organized in a grid corresponding
   to the layout of the number pad.
@@ -181,17 +135,27 @@ myLogHook h = dynamicLogWithPP ( defaultPP
   as well.
 -}
 
-myWorkspaces =
-  [
-    "1:Emacs",   "2:Hub",  "3:Dev",
-    "4:Docs",  "5:Term", "6:Web",
-    "7:Chat",  "8:Mail",  "9:Pix",
-    "0:VM",    "Extr1",  "Extr2"
-  ]
+-- myWorkspaces =
+--   [
+--     "i",   "2:Hub",  "3:Dev",
+--     "iv",  "v", "6:Web",
+--     "vii",  "8:Mail",  "ix",
+--     "0:VM",    "Extr1",  "Extr2"
+--   ]
 
-startupWorkspace = "1:Emacs"  -- which workspace do you want to be on after launch?
-
-
+myWorkspaces = clickable $ ["i"
+		,"ii"	
+		,"iii"	
+		,"iv"	
+		,"v"
+		,"vi"
+		,"vii"
+		,"viii"
+		,"ix"
+                ]       
+	where clickable l = [ "^ca(1,xdotool key alt+" ++ show (n) ++ ")" ++ ws ++ "^ca()" |
+				(i,ws) <- zip [1..] l,
+				let n = i ]
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ---SCRATCHPADS
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -269,7 +233,7 @@ defaultLayouts = smartBorders(avoidStruts(
 -- identified using the myIMRosterTitle variable, and by default is
 -- configured for Pidgin, so if you're using something else you
 -- will want to modify that variable.
-chatLayout = avoidStruts(withIM (1%7) (Title myIMRosterTitle) Grid)
+chatLayout = avoidStruts(withIM (1%7) (Title "CestDIego") Grid)
 
 -- The GIMP layout uses the ThreeColMid layout. The traditional GIMP
 -- floating panels approach is a bit of a challenge to handle with xmonad;
@@ -281,10 +245,10 @@ gimpLayout = smartBorders(avoidStruts(ThreeColMid 1 (3/100) (3/4)))
 
 -- Here we combine our default layouts with our specific, workspace-locked
 -- layouts.
-myLayouts = onWorkspace "7:Chat" chatLayout
-            $ onWorkspace "1:Emacs" myEmacsLayout
-            $ onWorkspace "4:Docs" myMusic
-            $ onWorkspace "9:Pix" gimpLayout
+myLayouts = onWorkspace "vii" chatLayout
+            $ onWorkspace "i" myEmacsLayout
+            $ onWorkspace "iv" myMusic
+            $ onWorkspace "ix" gimpLayout
             $ defaultLayouts
             where
               myEmacsLayout      =   workspaceDir "~/Documents/Projects" $ monocle
@@ -346,12 +310,13 @@ myLayouts = onWorkspace "7:Chat" chatLayout
 
 myManagementHooks :: [ManageHook]
 myManagementHooks = [
-   (className =? "Komodo IDE") --> doF (W.shift "5:Term")
   -- , (className =? "Komodo IDE" <&&> resource =? "Komodo_find2") --> doFloat
-  , (className =? "Gimp") --> doF (W.shift "9:Pix")
+   (className =? "Gimp") --> doF (W.shift "ix")
   ]
   ++
   [ resource =? r  --> doShift (myWorkspaces !! 5) | r <- myFolderApps]
+  ++
+  [ resource =? r  --> doIgnore | r <- myIgnoredApps]
   ++
   [ resource =? r --> doShift (myWorkspaces !! 6) | r <- myChatApps]
   ++
@@ -359,6 +324,7 @@ myManagementHooks = [
   where
     javaApps         = "sun-awt-X11-XFramePeer"
     myChatApps       = ["hackspace.slack.com"]
+    myIgnoredApps    = ["dzen2"]
     myFolderApps     = ["nautilus"]
     myFloatApps      = [ javaApps
                        , "simplescreenrecorder"
@@ -380,8 +346,52 @@ myManagementHooks = [
   content into it via the logHook.
 -}
 
+--------------------------------------------------------------------------------------------------------------------
+-- DZEN LOG RULES for workspace names, layout image, current program title
+--------------------------------------------------------------------------------------------------------------------
+myLogHook h = dynamicLogWithPP ( defaultPP
+	{
+		  ppCurrent		= dzenColor color15 background .	pad
+		, ppVisible		= dzenColor color14 background . 	pad
+		, ppHidden		= dzenColor color14 background . 	pad
+		, ppHiddenNoWindows	= dzenColor background background .	pad
+		, ppWsSep		= ""
+		, ppSep			= "    "
+		, ppLayout		= wrap "^ca(1,xdotool key alt+space)" "^ca()" . dzenColor color2 background .
+				(\x -> case x of
+					"Full"				->	"^i(~/.xmonad/dzen2/layout_full.xbm)"
+					"Spacing 5 ResizableTall"	->	"^i(~/.xmonad/dzen2/layout_tall.xbm)"
+					"ResizableTall"			->	"^i(~/.xmonad/dzen2/layout_tall.xbm)"
+					"SimplestFloat"			->	"^i(~/.xmonad/dzen2/mouse_01.xbm)"
+					"Circle"			->	"^i(~/.xmonad/dzen2/full.xbm)"
+					_				->	"^i(~/.xmonad/dzen2/grid.xbm)"
+				) 
+--		, ppTitle	=  wrap "^ca(1,xdotool key alt+shift+x)^fg(#D23D3D)^fn(fkp)x ^fn()" "^ca()" . dzenColor foreground background . shorten 40 . pad
+		, ppTitle	=  wrap "^ca(1,xdotool key alt+shift+x)" "^ca()" . dzenColor color15 background . shorten 40 . pad
+		, ppOrder	=  \(ws:l:t:_) -> [ws,l, t]
+		, ppOutput	=   hPutStrLn h
+	} )
+--------------------------------------------------------------------------------------------------------------------
+-- Spawn pipes and menus on boot, set default settings
+--------------------------------------------------------------------------------------------------------------------
+myXmonadBar = "dzen2 -x '0' -y '0' -h '20' -w '1000' -ta 'l'"
+              ++" -fg '" ++ foreground
+              ++ "' -bg '" ++ background
+              ++ "' -fn " ++ myFont
+
+myStatusBar = "/home/hackspace/.xmonad/status_bar '"
+              ++
+              foreground ++ "' '" ++
+              background ++"' "++
+              myFont
+
+
+
+              
 main = do
-  xmproc <- spawnPipe "xmobar ~/.xmonad/xmobarrc"
+  -- xmproc <- spawnPipe "xmobar ~/.xmonad/xmobarrc"
+  dzenLeftBar     <- spawnPipe myXmonadBar
+  dzenRightBar    <- spawnPipe myStatusBar
   xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig {
     terminal = myTerminal
   , borderWidth = myBorderWidth
@@ -395,19 +405,20 @@ main = do
     <+> manageDocks
   , startupHook = do
       setWMName "LG3D"
-      windows $ W.greedyView startupWorkspace
       spawn "~/.xmonad/startup-hook"
-      spawnOn "7:Chat" "google-chrome --app=https://hackspace.slack.com" 
+      spawnOn "vii" "google-chrome --app=https://hackspace.slack.com" 
       spawn "~/.config/keyboard-backlight.sh"
-  , logHook = takeTopFocus <+> dynamicLogWithPP xmobarPP {
-      ppOutput = hPutStrLn xmproc
-      , ppTitle = xmobarColor myTitleColor "" . shorten myTitleLength
-      , ppCurrent = xmobarColor myCurrentWSColor "" . wrap myCurrentWSLeft myCurrentWSRight
-      , ppVisible = xmobarColor myVisibleWSColor ""
-        . wrap myVisibleWSLeft myVisibleWSRight
-      , ppUrgent = xmobarColor myUrgentWSColor ""
-        . wrap myUrgentWSLeft myUrgentWSRight
-    }
+  , logHook     = myLogHook dzenLeftBar -- >> fadeInactiveLogHook 0xdddddddd
+
+  -- , logHook = takeTopFocus <+> dynamicLogWithPP xmobarPP {
+  --     ppOutput = hPutStrLn xmproc
+  --     , ppTitle = xmobarColor myTitleColor "" . shorten myTitleLength
+  --     , ppCurrent = xmobarColor myCurrentWSColor "" . wrap myCurrentWSLeft myCurrentWSRight
+  --     , ppVisible = xmobarColor myVisibleWSColor ""
+  --       . wrap myVisibleWSLeft myVisibleWSRight
+  --     , ppUrgent = xmobarColor myUrgentWSColor ""
+  --       . wrap myUrgentWSLeft myUrgentWSRight
+  --   }
   }
     `additionalKeysP` myKeyBindings
 
@@ -488,34 +499,7 @@ myKeyBindings =
         , ("M-S-]",             bringSelected $ myGSConfig myGridConfig)
         , ("M-M1-;",               changeDir myPromptConfig)
   ]
--- Here, some magic occurs that I once grokked but has since
--- fallen out of my head. Essentially what is happening is
--- that we are telling xmonad how to navigate workspaces,
--- how to send windows to different workspaces,
--- and what keys to use to change which monitor is focused.
--- myKeys =
---   [
---     ((m .|. myModMask, k), windows $ f i)
---        | (i, k) <- zip myWorkspaces numPadKeys
---        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
---   ] ++
---   [
---     ((m .|. myModMask, k), windows $ f i)
---        | (i, k) <- zip myWorkspaces numKeys
---        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
---   ] ++
---   M.toList (planeKeys myModMask (Lines 4) Finite) ++
---   [
---     ((m .|. myModMask, key), screenWorkspace sc
---       >>= flip whenJust (windows . f))
---       | (key, sc) <- zip [xK_w, xK_e, xK_r] [1,0,2]
---       , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
---   ]
-{-
-  Workspace navigation keybindings. This is probably the part of the
-  configuration I have spent the most time messing with, but understand
-  the least. Be very careful if messing with this section.
--}
+
 
 myBitmapsDir	= "~/.xmonad/dzen2/"
 

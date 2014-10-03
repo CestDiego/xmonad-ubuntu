@@ -22,24 +22,9 @@
 # 
 # 
 
-echo "Backing up old ~/.xmonad as ~/.xmonad.old"
-mv ~/.xmonad{,.old};
-
-echo "\n Cloning @cestdiego's repo... \n"
-
-git clone --recursive https://github.com/CestDiego/xmonad-ubuntu.git ~/.xmonad;
-
-
 echo "Installation Starting\n"
 
-if [ -f "/opt/extras.ubuntu.com/variety/bin/variety" ] ; then
-    if ps aux | grep variety > /dev/null; then
-        echo "\n Variety is already installed\n";
-    else
-        echo "\n Adding PPA to allow install of Variety from Peter Levi on Trusty\n";
-        sudo apt-add-repository ppa:peterlevi/ppa -y;
-    fi
-fi
+sudo apt-add-repository ppa:peterlevi/ppa -y;
 
 echo "\n Updating repositories\n"
 sudo apt-get update;
