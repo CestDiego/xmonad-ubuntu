@@ -1,7 +1,6 @@
 import XMonad
 import XMonad.Hooks.SetWMName
 
-
 --Dmenu
 import XMonad.Util.Dmenu
 
@@ -78,7 +77,7 @@ import XMonad.Prompt (defaultXPConfig, XPConfig(..), XPPosition(Top), Direction1
 
 myModMask            = mod4Mask       -- changes the mod key to "super"
 myBorderWidth        = 0              -- width of border around windows
-myTerminal           = "urxvtcd"   -- which terminal software to use
+myTerminal           = "urxvt"   -- which terminal software to use
 myIMRosterTitle      = "Buddy List"   -- title of roster on IM workspace
                                       -- use "Buddy List" for Pidgin, but
                                       -- "Contact List" for Empathy
@@ -137,6 +136,31 @@ myVisibleWSRight = ")"
 myUrgentWSLeft  = "{"         -- wrap urgent workspace with these
 myUrgentWSRight = "}"
 
+--------------------------------------------------------------------------------------------------------------------
+-- DZEN LOG RULES for workspace names, layout image, current program title
+--------------------------------------------------------------------------------------------------------------------
+myLogHook h = dynamicLogWithPP ( defaultPP
+	{
+		  ppCurrent		= dzenColor color15 background .	pad
+		, ppVisible		= dzenColor color14 background . 	pad
+		, ppHidden		= dzenColor color14 background . 	pad
+		, ppHiddenNoWindows	= dzenColor background background .	pad
+		, ppWsSep		= ""
+		, ppSep			= "    "
+		, ppLayout		= wrap "^ca(1,xdotool key alt+space)" "^ca()" . dzenColor color2 background .
+				(\x -> case x of
+					"Full"				->	"^i(/home/sunn/.xmonad/dzen2/layout_full.xbm)"
+					"Spacing 5 ResizableTall"	->	"^i(/home/sunn/.xmonad/dzen2/layout_tall.xbm)"
+					"ResizableTall"			->	"^i(/home/sunn/.xmonad/dzen2/layout_tall.xbm)"
+					"SimplestFloat"			->	"^i(/home/sunn/.xmonad/dzen2/mouse_01.xbm)"
+					"Circle"			->	"^i(/home/sunn/.xmonad/dzen2/full.xbm)"
+					_				->	"^i(/home/sunn/.xmonad/dzen2/grid.xbm)"
+				) 
+--		, ppTitle	=  wrap "^ca(1,xdotool key alt+shift+x)^fg(#D23D3D)^fn(fkp)x ^fn()" "^ca()" . dzenColor foreground background . shorten 40 . pad
+		, ppTitle	=  wrap "^ca(1,xdotool key alt+shift+x)" "^ca()" . dzenColor color15 background . shorten 40 . pad
+		, ppOrder	=  \(ws:l:t:_) -> [ws,l, t]
+		, ppOutput	=   hPutStrLn h
+	} )
 
 {-
   Workspace configuration. Here you can change the names of your
@@ -170,14 +194,14 @@ startupWorkspace = "1:Emacs"  -- which workspace do you want to be on after laun
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ---SCRATCHPADS
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                   -- Remember to install the urxvtcd script that checks if there is a daemon running
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                   -- Remember to install the urxvt script that checks if there is a daemon running
 myScratchpads =
               -- [ NS "terminal" "urxvtc -name terminal -e tmux attach"     (resource =? "terminal") myPosition
-              [ NS "terminal" "urxvtcd -name terminal"                    (resource =? "terminal") myTermPosition
-              , NS "music" "urxvtcd -name music -e ncmpcpp"               (resource =? "music")    myPositionBigger
-              , NS "alsa" "urxvtcd -name alsa -e alsamixer"               (resource =? "alsa")    myPositionBigger
-              , NS "rtorrent" "urxvtcd -name rtorrent -e rtorrent"        (resource =? "rtorrent") myPosition
+              [ NS "terminal" "urxvt -name terminal"                    (resource =? "terminal") myTermPosition
+              , NS "music" "urxvt -name music -e ncmpcpp"               (resource =? "music")    myPositionBigger
+              , NS "alsa" "urxvt -name alsa -e alsamixer"               (resource =? "alsa")    myPositionBigger
+              , NS "rtorrent" "urxvt -name rtorrent -e rtorrent"        (resource =? "rtorrent") myPosition
               ] where
                 myPosition = customFloating $ W.RationalRect (1/3) (1/3) (1/3) (1/3)
                 myTermPosition = customFloating $ W.RationalRect (1/3) (1/5) (2/3) (1/3)
@@ -445,7 +469,7 @@ myKeyBindings =
         , ("M-;",               sendMessage ZoomFullToggle)
 
     -- Apps
-        , ("M-M1-o",            runOrCopy "urxvtcd -name htop -e htop" (resource =? "htop"))
+        , ("M-M1-o",            runOrCopy "urxvt -name htop -e htop" (resource =? "htop"))
         , ("M-f",               raiseMaybe (runInTerm "-name ranger" "ranger") (resource =? "ranger"))
         , ("M-S-t",             raiseMaybe (runInTerm "-name newsbeuter" "newsbeuter") (resource =? "newsbeuter"))
         , ("M-C-j",             raiseMaybe (runInTerm "-name julia" "julia") (resource =? "julia"))
@@ -492,3 +516,24 @@ myKeyBindings =
   configuration I have spent the most time messing with, but understand
   the least. Be very careful if messing with this section.
 -}
+
+myBitmapsDir	= "~/.xmonad/dzen2/"
+
+background= "#181512"
+foreground= "#D6C3B6"
+color0=  "#332d29"
+color8=  "#817267"
+color1=  "#8c644c"
+color9=  "#9f7155"
+color2=  "#746C48"
+color10= "#9f7155"
+color3=  "#bfba92"
+color11= "#E0DAAC"
+color4=  "#646a6d"
+color12= "#777E82"
+color5=  "#766782"
+color13= "#897796"
+color6=  "#4B5C5E"
+color14= "#556D70"
+color7=  "#504339"
+color15= "#9a875f"
