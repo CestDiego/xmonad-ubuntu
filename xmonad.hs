@@ -1,76 +1,78 @@
-import XMonad
-import XMonad.Hooks.SetWMName
+import           XMonad
+import           XMonad.Hooks.SetWMName
 
 --Dmenu
-import XMonad.Util.Dmenu
+import           XMonad.Util.Dmenu
 
 -- Utilities
-import XMonad.Util.EZConfig (additionalKeysP, additionalMouseBindings)
-import XMonad.Util.NamedScratchpad (NamedScratchpad(NS), namedScratchpadManageHook, namedScratchpadAction, customFloating)
-import XMonad.Util.Run (safeSpawn, unsafeSpawn, runInTerm, spawnPipe)
-import Graphics.X11.ExtraTypes.XF86
+import           XMonad.Util.EZConfig (additionalKeysP, additionalMouseBindings)
+import           XMonad.Util.NamedScratchpad (NamedScratchpad(NS), namedScratchpadManageHook, namedScratchpadAction, customFloating)
+import           XMonad.Util.Run (safeSpawn, unsafeSpawn, runInTerm, spawnPipe)
+import           Graphics.X11.ExtraTypes.XF86
 
 -- Dbus For Spotify
 -- import DBus
 -- import DBus.Client
 
 -- Layouts Modifires
-import XMonad.Layout.NoBorders
-import XMonad.Layout.Circle
-import XMonad.Layout.Fullscreen
+import           XMonad.Layout.NoBorders
+import           XMonad.Layout.Circle
+import           XMonad.Layout.Fullscreen
 
-import XMonad.Layout.PerWorkspace (onWorkspace)
-import XMonad.Layout.Renamed (renamed, Rename(CutWordsLeft, Replace))
-import XMonad.Layout.WorkspaceDir
-import XMonad.Layout.Spacing (spacing)
-import XMonad.Layout.Minimize
-import XMonad.Layout.Maximize
-import XMonad.Layout.BoringWindows (boringWindows)
-import XMonad.Layout.LimitWindows (limitWindows, increaseLimit, decreaseLimit)
-import XMonad.Layout.WindowArranger (windowArrange, WindowArrangerMsg(..))
-import XMonad.Layout.Reflect (reflectVert, reflectHoriz, REFLECTX(..), REFLECTY(..))
-import XMonad.Layout.MultiToggle (mkToggle, single, EOT(EOT), Toggle(..), (??))
-import XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
+import           XMonad.Layout.PerWorkspace (onWorkspace)
+import           XMonad.Layout.Renamed (renamed, Rename(CutWordsLeft, Replace))
+import           XMonad.Layout.WorkspaceDir
+import           XMonad.Layout.Spacing (spacing)
+import           XMonad.Layout.Minimize
+import           XMonad.Layout.Maximize
+import           XMonad.Layout.BoringWindows (boringWindows)
+import           XMonad.Layout.LimitWindows (limitWindows, increaseLimit, decreaseLimit)
+import           XMonad.Layout.WindowArranger (windowArrange, WindowArrangerMsg(..))
+import           XMonad.Layout.Reflect (reflectVert, reflectHoriz, REFLECTX(..), REFLECTY(..))
+import           XMonad.Layout.MultiToggle (mkToggle, single, EOT(EOT), Toggle(..), (??))
+import           XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
 import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
-import System.IO
 
+-- System Stuff
+import           System.IO
+import           System.Environment -- get Environment Variables
 
 -- WorkSpaces Switch
 import XMonad.Actions.CycleWS			-- nextWS, prevWS
 
 -- Actions
-import XMonad.Actions.SpawnOn
-import XMonad.Actions.WindowGo (runOrRaise, raiseMaybe)
-import XMonad.Actions.CopyWindow (kill1, copyToAll, killAllOtherCopies, runOrCopy)
-import XMonad.Actions.GridSelect (GSConfig(..), goToSelected, bringSelected, colorRangeFromClassName, buildDefaultGSConfig)
+import           XMonad.Actions.SpawnOn
+import           XMonad.Actions.WindowGo (runOrRaise, raiseMaybe)
+import           XMonad.Actions.CopyWindow (kill1, copyToAll, killAllOtherCopies, runOrCopy)
+import           XMonad.Actions.GridSelect (GSConfig(..), goToSelected, bringSelected, colorRangeFromClassName, buildDefaultGSConfig)
 
-import XMonad.Hooks.DynamicLog
-import XMonad.Actions.Plane
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.UrgencyHook
-import XMonad.Hooks.ICCCMFocus
-import qualified XMonad.StackSet as W
-import qualified Data.Map as M
-import Data.Ratio ((%))
 import Data.List ---Clickable workspaces
+import qualified Data.Map as M
+import           Data.Ratio ((%))
+import           XMonad.Actions.Plane
+import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.ICCCMFocus
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.UrgencyHook
+import qualified XMonad.StackSet as W
 
 -- Layouts
-import XMonad.Layout.ZoomRow (zoomRow, zoomIn, zoomOut, zoomReset, ZoomMessage(ZoomFullToggle))
-import XMonad.Layout.Grid
+import           XMonad.Layout.ZoomRow (zoomRow, zoomIn, zoomOut, zoomReset, ZoomMessage(ZoomFullToggle))
+import           XMonad.Layout.Grid
 -- import XMonad.Layout.GridVariants (Grid(Grid))
-import XMonad.Layout.ResizableTile
-import XMonad.Layout.SimplestFloat
-import XMonad.Layout.IM
-import XMonad.Layout.OneBig
-import XMonad.Layout.ThreeColumns
+import           XMonad.Layout.ResizableTile
+import           XMonad.Layout.SimplestFloat
+import           XMonad.Layout.IM
+import           XMonad.Layout.OneBig
+import           XMonad.Layout.ThreeColumns
 
 -- Layout Modifiers
 
-import XMonad.Layout.WindowArranger (windowArrange, WindowArrangerMsg(..))
+import           XMonad.Layout.WindowArranger (windowArrange, WindowArrangerMsg(..))
 
 
 -- Prompts
-import XMonad.Prompt (defaultXPConfig, XPConfig(..), XPPosition(Top), Direction1D(..))
+import           XMonad.Prompt (defaultXPConfig, XPConfig(..), XPPosition(Top), Direction1D(..))
 {-
   Xmonad configuration variables. These settings control some of the
   simpler parts of xmonad's behavior and are straightforward to tweak.
@@ -86,6 +88,7 @@ myColorWhite    = "#eddcd3"
 myColorRed      = "#cd546c"
 myColorBrown    = "#989584"
 
+myHomeDir       = getEnv "HOME"
 
 -- Prompts colors
 myPromptConfig =
