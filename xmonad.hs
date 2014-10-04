@@ -118,32 +118,10 @@ myGSConfig colorizer  = (buildDefaultGSConfig myGridConfig)
 
 {-
   Workspace configuration. Here you can change the names of your
-  workspaces. Note that they are organized in a grid corresponding
-  to the layout of the number pad.
-
-  I would recommend sticking with relatively brief workspace names
-  because they are displayed in the xmobar status bar, where space
-  can get tight. Also, the workspace labels are referred to elsewhere
-  in the configuration file, so when you change a label you will have
-  to find places which refer to it and make a change there as well.
-
-  This central organizational concept of this configuration is that
-  the workspaces correspond to keys on the number pad, and that they
-  are organized in a grid which also matches the layout of the number pad.
-  So, I don't recommend changing the number of workspaces unless you are
-  prepared to delve into the workspace navigation keybindings section
-  as well.
+  workspaces. 
 -}
 
--- myWorkspaces =
---   [
---     "i",   "2:Hub",  "3:Dev",
---     "iv",  "v", "6:Web",
---     "vii",  "8:Mail",  "ix",
---     "0:VM",    "Extr1",  "Extr2"
---   ]
-
-myWorkspaces = clickable $ ["i"
+myWorkspaces = [ "i"
 		,"ii"	
 		,"iii"	
 		,"iv"	
@@ -153,9 +131,6 @@ myWorkspaces = clickable $ ["i"
 		,"viii"
 		,"ix"
                 ]       
-	where clickable l = [ "^ca(1,xdotool key alt+" ++ show (n) ++ ")" ++ ws ++ "^ca()" |
-				(i,ws) <- zip [1..] l,
-				let n = i ]
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ---SCRATCHPADS
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -251,7 +226,7 @@ myLayouts = onWorkspace "vii" chatLayout
             $ onWorkspace "ix" gimpLayout
             $ defaultLayouts
             where
-              myEmacsLayout      =   workspaceDir "~/Documents/Projects" $ monocle
+              myEmacsLayout      =   workspaceDir "/home/io/Documents/Projects" $ monocle
 
               myMusic            =   limitWindows 4  $ spacing 36 $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (2/3) (2/3)
 
@@ -322,10 +297,11 @@ myManagementHooks = [
   ++
   [ resource =? r --> doFloat                | r <- myFloatApps]
   where
-    javaApps         = "sun-awt-X11-XFramePeer"
     myChatApps       = ["hackspace.slack.com"]
     myIgnoredApps    = ["dzen2"]
     myFolderApps     = ["nautilus"]
+
+    javaApps         = "sun-awt-X11-XFramePeer"
     myFloatApps      = [ javaApps
                        , "simplescreenrecorder"
                        , "zeal"
@@ -359,27 +335,27 @@ myLogHook h = dynamicLogWithPP ( defaultPP
 		, ppSep			= "    "
 		, ppLayout		= wrap "^ca(1,xdotool key alt+space)" "^ca()" . dzenColor color2 background .
 				(\x -> case x of
-					"Full"				->	"^i(~/.xmonad/dzen2/layout_full.xbm)"
-					"Spacing 5 ResizableTall"	->	"^i(~/.xmonad/dzen2/layout_tall.xbm)"
-					"ResizableTall"			->	"^i(~/.xmonad/dzen2/layout_tall.xbm)"
-					"SimplestFloat"			->	"^i(~/.xmonad/dzen2/mouse_01.xbm)"
-					"Circle"			->	"^i(~/.xmonad/dzen2/full.xbm)"
-					_				->	"^i(~/.xmonad/dzen2/grid.xbm)"
+					"Full"				->	"^i(/home/io/.xmonad/dzen2/layout_full.xbm)"
+					"Spacing 5 ResizableTall"	->	"^i(/home/io/.xmonad/dzen2/layout_tall.xbm)"
+					"ResizableTall"			->	"^i(/home/io/.xmonad/dzen2/layout_tall.xbm)"
+					"SimplestFloat"			->	"^i(/home/io/.xmonad/dzen2/mouse_01.xbm)"
+					"Circle"			->	"^i(/home/io/.xmonad/dzen2/full.xbm)"
+					_				->	"^i(/home/io/.xmonad/dzen2/grid.xbm)"
 				) 
---		, ppTitle	=  wrap "^ca(1,xdotool key alt+shift+x)^fg(#D23D3D)^fn(fkp)x ^fn()" "^ca()" . dzenColor foreground background . shorten 40 . pad
-		, ppTitle	=  wrap "^ca(1,xdotool key alt+shift+x)" "^ca()" . dzenColor color15 background . shorten 40 . pad
+		, ppTitle	=  wrap "^ca(1,xdotool key alt+shift+x)^fg(#D23D3D)^fn(fkp)x ^fn()" "^ca()" . dzenColor foreground background . shorten 60 . pad
+		-- , ppTitle	=  wrap "^ca(1,xdotool key alt+shift+x)" "^ca()" . dzenColor color15 background . shorten 40 . pad
 		, ppOrder	=  \(ws:l:t:_) -> [ws,l, t]
 		, ppOutput	=   hPutStrLn h
 	} )
 --------------------------------------------------------------------------------------------------------------------
 -- Spawn pipes and menus on boot, set default settings
 --------------------------------------------------------------------------------------------------------------------
-myXmonadBar = "dzen2 -x '0' -y '0' -h '20' -w '1000' -ta 'l'"
+myXmonadBar = "dzen2 -x '0' -y '0' -h '20' -w '1000' -ta 'l' "
               ++" -fg '" ++ foreground
               ++ "' -bg '" ++ background
               ++ "' -fn " ++ myFont
 
-myStatusBar = "/home/hackspace/.xmonad/status_bar '"
+myStatusBar = "/home/io/.xmonad/status_bar '"
               ++
               foreground ++ "' '" ++
               background ++"' "++
@@ -389,7 +365,7 @@ myStatusBar = "/home/hackspace/.xmonad/status_bar '"
 
               
 main = do
-  -- xmproc <- spawnPipe "xmobar ~/.xmonad/xmobarrc"
+  -- xmproc <- spawnPipe "xmobar /home/io/.xmonad/xmobarrc"
   dzenLeftBar     <- spawnPipe myXmonadBar
   dzenRightBar    <- spawnPipe myStatusBar
   xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig {
@@ -405,9 +381,8 @@ main = do
     <+> manageDocks
   , startupHook = do
       setWMName "LG3D"
-      spawn "~/.xmonad/startup-hook"
+      spawn "/home/io/.xmonad/startup-hook"
       spawnOn "vii" "google-chrome --app=https://hackspace.slack.com" 
-      spawn "~/.config/keyboard-backlight.sh"
   , logHook     = myLogHook dzenLeftBar -- >> fadeInactiveLogHook 0xdddddddd
 
   -- , logHook = takeTopFocus <+> dynamicLogWithPP xmobarPP {
@@ -485,8 +460,8 @@ myKeyBindings =
         , ("M-S-t",             raiseMaybe (runInTerm "-name newsbeuter" "newsbeuter") (resource =? "newsbeuter"))
         , ("M-C-j",             raiseMaybe (runInTerm "-name julia" "julia") (resource =? "julia"))
         , ("M-v",               raiseMaybe (runInTerm "-name weechat" "weechat-curses") (resource =? "weechat"))
-        , ("<Print>",           spawn " sleep 0.2; scrot -e 'mv $f ~/Pictures/Screenshots/'& mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
-        , ("M-<Print>",         spawn " sleep 0.2; scrot -s -e 'mv $f ~/Pictures/Screenshots/'& mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
+        , ("<Print>",           spawn " sleep 0.2; scrot -e 'mv $f /home/io/Pictures/Screenshots/'& mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
+        , ("M-<Print>",         spawn " sleep 0.2; scrot -s -e 'mv $f /home/io/Pictures/Screenshots/'& mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
 
     -- Scratchpads
         , ("M-g",               namedScratchpadAction myScratchpads "terminal")
@@ -501,7 +476,7 @@ myKeyBindings =
   ]
 
 
-myBitmapsDir	= "~/.xmonad/dzen2/"
+myBitmapsDir	= "/home/io/.xmonad/dzen2/"
 
 background= "#181512"
 foreground= "#D6C3B6"
