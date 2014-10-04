@@ -83,8 +83,8 @@ xrandr | grep 'DP-1 connected' | ifne xrandr --output DP-1 --auto --left-of LVDS
 #
 stalonetray \
   --icon-gravity E \
-  --geometry 8x1-0+0 \
-  --max-geometry 8x1-0+0 \
+  --geometry 9x1-0+0 \
+  --max-geometry 9x1-0+0 \
   --background '#1f1f1f' \
   --skip-taskbar \
   --icon-size 24 \
@@ -113,6 +113,8 @@ echo "0" | sudo tee -a /sys/devices/platform/asus-nb-wmi/leds/asus::kbd_backligh
 
 #Plz low screen brightness
 xbacklight -set 20
+
+ibus exit
 
 dropbox start &
 # Now, finally, start xmonad

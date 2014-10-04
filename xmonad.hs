@@ -354,7 +354,7 @@ myLogHook h = dynamicLogWithPP ( defaultPP
 -- Spawn pipes and menus on boot, set default settings
 --------------------------------------------------------------------------------------------------------------------
 myXmonadBar = "dzen2 -x '0' -y '0' "
-              ++ " -h '20' -w '1000' "
+              ++ " -h '24' -w '1200' "
               ++ " -ta 'l' "
               ++ " -fg '" ++ foreground
               ++ "' -bg '" ++ background
@@ -410,6 +410,8 @@ myKeyBindings =
         , ("<XF86AudioRaiseVolume>", spawn "amixer set Mater 5%+ unmute")
         , ("<XF86MonBrightnessUp>", spawn "xbacklight +20")
         , ("<XF86MonBrightnessDown>", spawn "xbacklight -20")
+        
+        , ("M-q", spawn "killall dzen2; killall conky; killall tint2; cd ~/.xmonad; ghc -threaded xmonad.hs; mv xmonad xmonad-x86_64-linux; xmonad --restart" )
     -- , ((0, 0x1008FF12), spawn "amixer -q set Master toggle")
     -- , ((0, 0x1008FF11), spawn "amixer -q set Master 10%-")
     -- , ((0, 0x1008FF13), spawn "amixer -q set Master 10%+")
@@ -482,7 +484,7 @@ myKeyBindings =
 
 myBitmapsDir	= "/home/io/.xmonad/dzen2/"
 
-background= "#181512"
+background= "#1f1f1f"
 foreground= "#D6C3B6"
 color0=  "#332d29"
 color8=  "#817267"
