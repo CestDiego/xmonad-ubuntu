@@ -124,7 +124,17 @@ myGSConfig colorizer  = (buildDefaultGSConfig myGridConfig)
   workspaces. 
 -}
 
-myWorkspaces = [ "i"
+-- myWorkspaces = [ "i"
+-- 		,"ii"	
+-- 		,"iii"	
+-- 		,"iv"	
+-- 		,"v"
+-- 		,"vi"
+-- 		,"vii"
+-- 		,"viii"
+-- 		,"ix"
+--                 ]       
+myWorkspaces = clickable $ ["i"
 		,"ii"	
 		,"iii"	
 		,"iv"	
@@ -132,8 +142,9 @@ myWorkspaces = [ "i"
 		,"vi"
 		,"vii"
 		,"viii"
-		,"ix"
-                ]       
+		,"ix"]	
+	where clickable l = [ "^ca(1,xdotool key super+" ++ show (n) ++ ")" ++ ws ++ "^ca()" |
+				(i,ws) <- zip [1..] l, let n = i ]
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ---SCRATCHPADS
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -223,23 +234,27 @@ gimpLayout = smartBorders(avoidStruts(ThreeColMid 1 (3/100) (3/4)))
 
 -- Here we combine our default layouts with our specific, workspace-locked
 -- layouts.
-myLayouts = onWorkspace "vii" chatLayout
-            $ onWorkspace "i" myEmacsLayout
-            $ onWorkspace "iv" myMusic
-            $ onWorkspace "ix" gimpLayout
+myLayouts =   onWorkspace (myWorkspaces !! 6) chatLayout
+            $ onWorkspace (myWorkspaces !! 0) (avoidStruts (fullScreen))
+            $ onWorkspace (myWorkspaces !! 7) (avoidStruts (simplestFloat))
+            $ onWorkspace (myWorkspaces !! 3) (avoidStruts (tiledSpace ||| fullTile) ||| fullScreen)
+            $ onWorkspace (myWorkspaces !! 8) gimpLayout
             $ defaultLayouts
             where
-              myEmacsLayout      =   workspaceDir "/home/io/Documents/Projects" $ monocle
+                myMusic            =   limitWindows 4  $ spacing 36 $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (2/3) (2/3)
+		tiled  		= spacing 5 $ ResizableTall nmaster delta ratio [] 
 
-              myMusic            =   limitWindows 4  $ spacing 36 $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (2/3) (2/3)
+                fullScreen 	= noBorders(fullscreenFull Full)
+                tiledSpace  	= limitWindows 4 $ spacing 46 $ ResizableTall nmaster delta ratio [] 
+                fullTile        = ResizableTall nmaster delta ratio [] 
+                bigMonitor  	= spacing 5 $ ThreeColMid nmaster delta ratio 
 
-              -- oneBig          = renamed [Replace "oneBig"]       $ limitWindows 6  $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (2/3) (2/3)
-              -- space           = renamed [Replace "space"]        $ limitWindows 4  $ spacing 36 $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (2/3) (2/3)
-              -- lined           = renamed [Replace "lined"]        $ limitWindows 3  $ Mirror $ mkToggle (single MIRROR) zoomRow
-              monocle         = renamed [Replace "monocle"]      $ limitWindows 20   Full
-              -- grid            = renamed [Replace "grid"]         $ limitWindows 12 $ mkToggle (single MIRROR) $ Grid
-              -- float           = renamed [Replace "float"]        $ limitWindows 20   simplestFloat
-              -- gimp            = renamed [Replace "gimp"]         $ limitWindows 5  $ withIM 0.11 (Role "gimp-toolbox") $ reflectHoriz $ withIM 0.15 (Role "gimp-dock") Full
+                -- Default number of windows in master pane
+                nmaster = 1
+                -- Percent of the screen to increment when resizing
+                delta 	= 5/100
+                -- Default proportion of the screen taken up by main pane
+                ratio 	= toRational (2/(1 + sqrt 5 :: Double)) 
 
 
 
@@ -332,11 +347,12 @@ myLogHook h = dynamicLogWithPP ( defaultPP
 	{
 		  ppCurrent		= dzenColor color15 background .	pad
 		, ppVisible		= dzenColor color14 background . 	pad
-		, ppHidden		= dzenColor color14 background . 	pad
-		, ppHiddenNoWindows	= dzenColor background background .	pad
+                -- display other workspaces which contain windows as a brighter grey
+		, ppHidden		= dzenColor color7 background . 	pad
+		, ppHiddenNoWindows	= dzenColor color0 background .	pad
 		, ppWsSep		= ""
 		, ppSep			= "    "
-		, ppLayout		= wrap "^ca(1,xdotool key alt+space)" "^ca()" . dzenColor color2 background .
+		, ppLayout		= wrap "^ca(1,xdotool key super+space)" "^ca()" . dzenColor color2 background .
 				(\x -> case x of
 					"Full"				->	"^i(/home/io/.xmonad/dzen2/layout_full.xbm)"
 					"Spacing 5 ResizableTall"	->	"^i(/home/io/.xmonad/dzen2/layout_tall.xbm)"
@@ -345,8 +361,8 @@ myLogHook h = dynamicLogWithPP ( defaultPP
 					"Circle"			->	"^i(/home/io/.xmonad/dzen2/full.xbm)"
 					_				->	"^i(/home/io/.xmonad/dzen2/grid.xbm)"
 				) 
-		, ppTitle	=  wrap "^ca(1,xdotool key alt+shift+x)^fg(#D23D3D)^fn(fkp)x ^fn()" "^ca()" . dzenColor foreground background . shorten 60 . pad
-		-- , ppTitle	=  wrap "^ca(1,xdotool key alt+shift+x)" "^ca()" . dzenColor color15 background . shorten 40 . pad
+		-- , ppTitle	=  wrap "^ca(1,xdotool key alt+shift+x)^fg(#D23D3D)^fn(fkp)x ^fn()" "^ca()" . dzenColor foreground background . shorten 60 . pad
+		, ppTitle	=  wrap "^ca(1,xdotool key super+C)" "^ca()" . dzenColor color15 background . shorten 100 . pad
 		, ppOrder	=  \(ws:l:t:_) -> [ws,l, t]
 		, ppOutput	=   hPutStrLn h
 	} )
@@ -354,7 +370,7 @@ myLogHook h = dynamicLogWithPP ( defaultPP
 -- Spawn pipes and menus on boot, set default settings
 --------------------------------------------------------------------------------------------------------------------
 myXmonadBar = "dzen2 -x '0' -y '0' "
-              ++ " -h '24' -w '1200' "
+              ++ " -h '24' -w '1150' "
               ++ " -ta 'l' "
               ++ " -fg '" ++ foreground
               ++ "' -bg '" ++ background
@@ -376,14 +392,13 @@ main = do
   xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig {
     terminal = myTerminal
   , borderWidth = myBorderWidth
-  , layoutHook = myLayouts
+  , layoutHook = smartBorders $ myLayouts
   , workspaces = myWorkspaces
   , modMask = myModMask
   , handleEventHook = fullscreenEventHook
-  , manageHook = manageHook defaultConfig
+  , manageHook = manageDocks <+> manageHook defaultConfig
     <+> namedScratchpadManageHook myScratchpads
     <+> composeAll myManagementHooks
-    <+> manageDocks
   , startupHook = do
       setWMName "LG3D"
       spawn "/home/io/.xmonad/startup-hook"

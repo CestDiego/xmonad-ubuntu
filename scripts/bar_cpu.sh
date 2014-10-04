@@ -7,10 +7,10 @@ PERC=`mpstat -P ALL 0 | awk '{gsub(//,""); print $4}' | sed -n "$n"p`
 ICON="cpu.xbm"
 if [[ $PERC > 75 ]]; then
     PERCBAR=`echo -e "$PERC"\
-        | gdbar -bg $bar_bg -fg $warning -h 1 -w 180`
+        | dzen2-gdbar -bg $bar_bg -fg $warning -h 1 -w 180`
 else
     PERCBAR=`echo -e "$PERC"\
-        | gdbar -bg $bar_bg -fg $bar_fg -h 1 -w 180`
+        | dzen2-gdbar -bg $bar_bg -fg $bar_fg -h 1 -w 180`
 fi
 
 ICON='^i(/home/io/.xmonad/dzen2/'"$ICON)"

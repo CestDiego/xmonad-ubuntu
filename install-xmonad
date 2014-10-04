@@ -32,7 +32,7 @@ sudo apt-get update;
 echo "\n Installing required packages...\n"
 sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar nitrogen \
  compton stalonetray moreutils consolekit ssh-askpass-gnome xbacklight ranger htop xsel \
- acpi rxvt-unicode-256color dmenu scrot variety -y ;
+ acpi rxvt-unicode-256color dmenu scrot variety conky sysstat xdotool dzen2 -y ;
 
 echo "\n Creating xmonad xsession configuration...\n"
 sudo mv /usr/share/xsessions/xmonad.desktop /usr/share/xsessions/xmonad.desktop.original ;

@@ -19,7 +19,7 @@ date=$(mpc current -f  %date%)
 art="/home/io/.config/ario/covers/$(ls ~/.config/ario/covers | grep -v SMALL | grep "$(mpc current -f %album% | sed 's/:/ /g')")"
 perc=`mpc | awk 'NR == 2 {gsub(/[()%]/,""); print $4}'`
  
-percbar=`echo -e "$perc" | gdbar -bg $bar_bg -fg $foreground -h 1 -w $(($WIDTH-20))`
+percbar=`echo -e "$perc" | dzen2-gdbar -bg $bar_bg -fg $foreground -h 1 -w $(($WIDTH-20))`
 
 #84x84
 feh -x -B black -^ "" -g 108x108+$(($XPOS-108))+$(($YPOS+12)) -Z "$art" &

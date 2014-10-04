@@ -8,10 +8,10 @@ PERC=`echo $FREE*100/$MAX | bc`
 ICON="mem.xbm"
 if [[ $PERC -gt 75 ]]; then
     PERCBAR=`echo -e "$PERC"\
-        | gdbar -bg $bar_bg -fg $warning -h 5 -w 50`
+        | dzen2-gdbar -bg $bar_bg -fg $warning -h 5 -w 50`
 else
     PERCBAR=`echo -e "$PERC"\
-        | gdbar -bg $bar_bg -fg $bar_fg -h 5 -w 50`
+        | dzen2-gdbar -bg $bar_bg -fg $bar_fg -h 5 -w 50`
 fi
 
 ICON='^i(/home/io/.xmonad/dzen2/'"$ICON)"

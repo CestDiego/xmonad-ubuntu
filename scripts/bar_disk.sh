@@ -9,10 +9,10 @@ TOTAL=`df -h | grep "$1" | awk '{gsub(/%/,""); print $2}'`
 ICON="diskette.xbm"
 if [[ $FREE -gt 75 ]]; then
     PERCBAR=`echo -e "$FREE"\
-        | gdbar -bg $bar_bg -fg $warning -h 1 -w 130`
+        | dzen2-gdbar -bg $bar_bg -fg $warning -h 1 -w 130`
 else
     PERCBAR=`echo -e "$FREE"\
-        | gdbar -bg $bar_bg -fg $bar_fg -h 1 -w 130`
+        | dzen2-gdbar -bg $bar_bg -fg $bar_fg -h 1 -w 130`
 fi
 
 ICON='^i(/home/io/.xmonad/dzen2/'"$ICON)"
