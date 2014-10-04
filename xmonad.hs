@@ -353,8 +353,10 @@ myLogHook h = dynamicLogWithPP ( defaultPP
 --------------------------------------------------------------------------------------------------------------------
 -- Spawn pipes and menus on boot, set default settings
 --------------------------------------------------------------------------------------------------------------------
-myXmonadBar = "dzen2 -x '0' -y '0' -h '20' -w '1000' -ta 'l' "
-              ++" -fg '" ++ foreground
+myXmonadBar = "dzen2 -x '0' -y '0' "
+              ++ " -h '20' -w '1000' "
+              ++ " -ta 'l' "
+              ++ " -fg '" ++ foreground
               ++ "' -bg '" ++ background
               ++ "' -fn " ++ myFont
 
@@ -385,7 +387,6 @@ main = do
   , startupHook = do
       setWMName "LG3D"
       spawn "/home/io/.xmonad/startup-hook"
-      spawnOn "vii" "google-chrome --app=https://hackspace.slack.com" 
   , logHook     = myLogHook dzenLeftBar -- >> fadeInactiveLogHook 0xdddddddd
 
   -- , logHook = takeTopFocus <+> dynamicLogWithPP xmobarPP {

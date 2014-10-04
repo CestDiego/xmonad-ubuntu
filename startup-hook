@@ -92,12 +92,17 @@ if [ -z "$(pgrep variety)" ] ; then
     /opt/extras.ubuntu.com/variety/bin/variety &
 fi
 
+if [ -z "$(pgrep chrome)" ] ; then
+    google-chrome --app=https://hackspace.slack.com &
+fi
 
 echo "0" | sudo tee -a /sys/devices/platform/asus-nb-wmi/leds/asus::kbd_backlight/brightness > /dev/null
 
 exec ~/.xmonad/scripts/bar_battery.sh &
 
-prime-indicator &&
+if [ -z "$(pgrep -f prime-indicator)" ] ; then
+    prime-indicator &
+fi
 
 # Exit frigging ibus
 sleep 20

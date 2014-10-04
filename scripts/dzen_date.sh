@@ -9,7 +9,7 @@ LINES="12"
 #timealivesecs=$(date -d 1990-09-26 +%s)
 #timealivedays=$(( $timealivesecs / 86400 ))
 
-time=$(TZ="America/New_York" date | awk -F " " '{print $4}')
+time=$(TZ="America/Lima" date | awk -F " " '{print $4}')
 calendar=$(cal -1)
 datea=$(date +%a)
 dateb=$(date +%b)

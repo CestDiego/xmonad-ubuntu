@@ -5,12 +5,19 @@ font=$3
 
 # Check to see if external is connected
 if [[ -z `xrandr | grep " connected" | grep 'VGA'` ]]; then
-	conky -qc /home/hackspace/.xmonad/.conky_dzen | dzen2 -x '1000' -w '600' -h '20' -ta 'r' -bg $background -fg $foreground -y '0' -fn $font -dock &
+	conky -qc /home/io/.xmonad/.conky_dzen | dzen2 \
+            -x '1000' -y '0' \
+            -w '600' -h '20' \
+            -ta 'r' \
+            -bg $background \
+            -fg $foreground \
+            -fn $font \
+            -dock &
 else 
 	#nitrogen --restore
-	conky -qc /home/hackspace/.xmonad/.conky_dzen | dzen2 \
-            -x '1200' -y '0' \
-            -w '720' -h '14' \
+	conky -qc /home/io/.xmonad/.conky_dzen | dzen2 \
+            -x '1000' -y '0' \
+            -w '800' -h '20' \
             -ta 'r' \
             -bg $background \
             -fg $foreground \
