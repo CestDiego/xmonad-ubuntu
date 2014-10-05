@@ -370,7 +370,7 @@ myLogHook h = dynamicLogWithPP ( defaultPP
 -- Spawn pipes and menus on boot, set default settings
 --------------------------------------------------------------------------------------------------------------------
 myXmonadBar = "dzen2 -x '0' -y '0' "
-              ++ " -h '24' -w '1150' "
+              ++ " -h '24' -w '1000' "
               ++ " -ta 'l' "
               ++ " -fg '" ++ foreground
               ++ "' -bg '" ++ background

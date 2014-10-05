@@ -11,7 +11,7 @@ if [[ $ASTAT = "on" ]]; then
     PERCBAR=`echo "$AMASTER"\
         | dzen2-gdbar -bg $bar_bg -fg $bar_fg -h 1 -w 50`
 else
-    ICON="spkr_02.xbm"
+    ICON="volume0.xbm"
     PERCBAR=`echo 0 \
         | dzen2-gdbar -bg $bar_bg -fg $bar_fg -h 1 -w 50`
 fi

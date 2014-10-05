@@ -6,8 +6,8 @@ font=$3
 # Check to see if external is connected
 if [[ -z `xrandr | grep " connected" | grep 'VGA'` ]]; then
 	conky -qc /home/io/.xmonad/.conky_dzen | dzen2 \
-            -x '1150' -y '0' \
-            -w '555' -h '24' \
+            -x '1000' -y '0' \
+            -w '705' -h '24' \
             -ta 'r' \
             -bg $background \
             -fg $foreground \
