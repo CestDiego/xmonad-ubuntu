@@ -19,9 +19,9 @@ else
             -x '1000' -y '0' \
             -w '800' -h '20' \
             -ta 'r' \
-            -bg $background \
-            -fg $foreground \
-            -fn $font \
+            # -bg $background \
+            # -fg $foreground \
+            # -fn $font \
             -dock &
 	#conky -qc /home/hackspace/.xmonad/.conky_dzen2 | dzen2 -x '1200' -w '720' -h '14' -ta 'r' -bg $background -fg $foreground -y '0' -fn $font -dock &
 	#conky -qc /home/hackspace/.xmonad/.conky_dzen3 | dzen2 -x '1200' -w '720' -h '14' -ta 'r' -bg $background -fg $foreground -y '0' -fn $font -dock &

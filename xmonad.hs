@@ -362,7 +362,8 @@ myLogHook h = dynamicLogWithPP ( defaultPP
 					_				->	"^i(/home/io/.xmonad/dzen2/grid.xbm)"
 				) 
 		-- , ppTitle	=  wrap "^ca(1,xdotool key alt+shift+x)^fg(#D23D3D)^fn(fkp)x ^fn()" "^ca()" . dzenColor foreground background . shorten 60 . pad
-		, ppTitle	=  wrap "^ca(1,xdotool key super+C)" "^ca()" . dzenColor color15 background . shorten 100 . pad
+		-- , ppTitle	=  wrap "^ca(1,xdotool key super+C)" "^ca()" . dzenColor color15 background . shorten 100 . pad
+		, ppTitle	=  dzenColor color15 background . shorten 100 . pad
 		, ppOrder	=  \(ws:l:t:_) -> [ws,l, t]
 		, ppOutput	=   hPutStrLn h
 	} )

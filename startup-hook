@@ -17,6 +17,8 @@
 #     remmina -i &
 # fi
 
+emacs --daemon &
+
 # Network manager, so we don't have to configure wifi at the command line.
 if [ -z "$(pgrep nm-applet)" ] ; then
     nm-applet --sm-disable &
@@ -73,11 +75,7 @@ setxkbmap -option 'ctrl:no caps'
 
 # So this is just to start programs by default, lets try with Emacs first
 
-if [ -z "$(pgrep emacs)" ] ; then
-    emacs &
-else
-    subl &
-fi
+
 
 # Set the wallpaper from Unity, if using arch linux this goes to the merde
 nautilus &
@@ -99,5 +97,10 @@ if [ -z "$(pgrep -f prime-indicator)" ] ; then
     prime-indicator &
 fi
 
+if [ -z "$(pgrep emacs)" ] ; then
+    emacs &
+else
+    subl &
+fi
 # Exit frigging ibus
 sleep 20

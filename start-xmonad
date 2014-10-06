@@ -116,6 +116,7 @@ xbacklight -set 20
 
 ibus exit
 
+
 dropbox start &
 # Now, finally, start xmonad
 exec xmonad

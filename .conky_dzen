@@ -1,12 +1,11 @@
 short_units yes
-background yes
+background no
 out_to_console yes
 out_to_x no
 # Update interval in seconds
 update_interval 0.1
 update_interval_on_battery 5
  
-# ^ca(1,/home/io/.xmonad/scripts/dzen_pacman.sh)  ^fg(\#636e74)^i(/home/io/.xmonad/dzen2/pacman.xbm) ^fg(\#bea492)${exec pacman -Qu | wc -l} updates  ^ca()\
 TEXT
 ^ca(1,/home/io/.xmonad/sc /home/io/.xmonad/scripts/dzen_hardware.sh) ^fg(\#636e74)\
 ${execi 2 /home/io/.xmonad/scripts/bar_ram.sh} ^fg(\#bea492)   ^ca()\
