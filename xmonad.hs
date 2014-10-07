@@ -151,14 +151,18 @@ myWorkspaces = clickable $ ["i"
                    -- Remember to install the urxvt script that checks if there is a daemon running
 myScratchpads =
               -- [ NS "terminal" "urxvtc -name terminal -e tmux attach"     (resource =? "terminal") myPosition
-              [ NS "terminal" "urxvt -name terminal"                    (resource =? "terminal") myTermPosition
-              , NS "music" "urxvt -name music -e ncmpcpp"               (resource =? "music")    myPositionBigger
-              , NS "alsa" "urxvt -name alsa -e alsamixer"               (resource =? "alsa")    myPositionBigger
-              , NS "rtorrent" "urxvt -name rtorrent -e rtorrent"        (resource =? "rtorrent") myPosition
+              [ NS "terminal" "urxvt -name terminal"                                                 (resource =? "terminal") myTermPosition
+              , NS "music" "urxvt -name playlist -e ncmpcpp"                             (resource =? "music")    myPositionBiggerSE
+              -- , NS "clock" "urxvt -name clock -e ncmpcpp -s clock"                                   (resource =? "clock")    myPositionBiggerSW
+              -- , NS "clock" "urxvt -name browser -e ncmpcpp -s browser"                                   (resource =? "browser")    myPositionBiggerSE
+              -- , NS "media-library" "urxvt -name media-library -e ncmpcpp -s media-library"           (resource =? "media-library")    myPositionBiggerSE
+              , NS "alsa" "urxvt -name alsa -e alsamixer"                                            (resource =? "alsa")    myPositionBiggerSE
+              , NS "rtorrent" "urxvt -name rtorrent -e rtorrent"                                     (resource =? "rtorrent") myPosition
               ] where
                 myPosition = customFloating $ W.RationalRect (1/3) (1/3) (1/3) (1/3)
                 myTermPosition = customFloating $ W.RationalRect (1/3) (1/5) (2/3) (1/3)
-                myPositionBigger = customFloating $ W.RationalRect (1/2) (1/2) (1/2) (1/2)  
+                myPositionBiggerSW = customFloating $ W.RationalRect (1/2) (1/2) (1/2) (1/2)  
+                myPositionBiggerSE = customFloating $ W.RationalRect (1/5) (1/5) (1/3) (1/3)
 
 
 {-
@@ -313,11 +317,17 @@ myManagementHooks = [
   ++
   [ resource =? r --> doShift (myWorkspaces !! 6) | r <- myChatApps]
   ++
+  [ resource =? r --> doShift (myWorkspaces !! 7) | r <- myArmyApps]
+  ++
   [ resource =? r --> doFloat                | r <- myFloatApps]
   where
     myChatApps       = ["hackspace.slack.com"]
     myIgnoredApps    = ["dzen2"]
     myFolderApps     = ["nautilus"]
+    myArmyApps       = ["army-browser"
+                        "army-clock"
+                        "army-playlist"
+                        "army-alsamixer"]
 
     javaApps         = "sun-awt-X11-XFramePeer"
     myFloatApps      = [ javaApps

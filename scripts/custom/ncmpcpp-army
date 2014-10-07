@@ -1,0 +1,5 @@
+#!/bin/bash
+urxvt -name army-browser -e ncmpcpp -s browser &
+urxvt -name army-clock -e ncmpcpp -s clock &
+urxvt -name army-playlist -e ncmpcpp -s playlist &
+urxvt -name army-alsamixer -e alsamixer &
