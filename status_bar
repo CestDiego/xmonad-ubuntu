@@ -17,7 +17,7 @@ else
 	#nitrogen --restore
 	conky -qc /home/io/.xmonad/.conky_dzen | dzen2 \
             -x '1000' -y '0' \
-            -w '800' -h '20' \
+            -w '2700' -h '24' \
             -ta 'r' \
             # -bg $background \
             # -fg $foreground \
