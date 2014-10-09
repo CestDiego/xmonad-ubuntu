@@ -317,7 +317,7 @@ myManagementHooks = [
   ++
   [ resource =? r --> doShift (myWorkspaces !! 6) | r <- myChatApps]
   ++
-  [ resource =? r --> doShift (myWorkspaces !! 7) | r <- myArmyApps]
+  [ resource =? r --> doShift (myWorkspaces !! 4) | r <- myArmyApps]
   ++
   [ resource =? r --> doFloat                | r <- myFloatApps]
   where
@@ -325,9 +325,9 @@ myManagementHooks = [
     myIgnoredApps    = ["dzen2"]
     myFolderApps     = ["nautilus"]
     myArmyApps       = ["army-browser"
-                        "army-clock"
-                        "army-playlist"
-                        "army-alsamixer"]
+                        ,"army-clock"
+                        ,"army-playlist"
+                        ,"army-alsamixer"]
 
     javaApps         = "sun-awt-X11-XFramePeer"
     myFloatApps      = [ javaApps
