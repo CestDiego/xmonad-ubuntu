@@ -79,7 +79,9 @@ import           XMonad.Prompt (defaultXPConfig, XPConfig(..), XPPosition(Top), 
 -}
 
 myModMask            = mod4Mask       -- changes the mod key to "super"
-myBorderWidth        = 0              -- width of border around windows
+myBorderWidth        = 1              -- width of border around windows
+myFocusedBorderColor = "#746C48"
+myNormalBorderColor  = "#1f1f1f"
 myTerminal           = "urxvt"   -- which terminal software to use
 
 myFont          = "xft:Monaco"
@@ -404,6 +406,8 @@ main = do
   xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig {
     terminal = myTerminal
   , borderWidth = myBorderWidth
+  , focusedBorderColor = myFocusedBorderColor
+  , normalBorderColor  = myNormalBorderColor
   , layoutHook = smartBorders $ myLayouts
   , workspaces = myWorkspaces
   , modMask = myModMask
