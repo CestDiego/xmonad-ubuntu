@@ -242,7 +242,8 @@ gimpLayout = smartBorders(avoidStruts(ThreeColMid 1 (3/100) (3/4)))
 -- layouts.
 myLayouts =   onWorkspace (myWorkspaces !! 6) chatLayout
             $ onWorkspace (myWorkspaces !! 0) (avoidStruts (fullScreen))
-            $ onWorkspace (myWorkspaces !! 7) (avoidStruts (simplestFloat))
+            -- $ onWorkspace (myWorkspaces !! 7) (avoidStruts (simplestFloat))
+            $ onWorkspace (myWorkspaces !! 2) (avoidStruts (tiledSpace ||| fullTile) ||| fullScreen)
             $ onWorkspace (myWorkspaces !! 3) (avoidStruts (tiledSpace ||| fullTile) ||| fullScreen)
             $ onWorkspace (myWorkspaces !! 8) gimpLayout
             $ defaultLayouts
@@ -251,7 +252,7 @@ myLayouts =   onWorkspace (myWorkspaces !! 6) chatLayout
 		tiled  		= spacing 5 $ ResizableTall nmaster delta ratio [] 
 
                 fullScreen 	= noBorders(fullscreenFull Full)
-                tiledSpace  	= limitWindows 4 $ spacing 46 $ ResizableTall nmaster delta ratio [] 
+                tiledSpace  	= limitWindows 4 $ spacing 34 $ ResizableTall nmaster delta ratio [] 
                 fullTile        = ResizableTall nmaster delta ratio [] 
                 bigMonitor  	= spacing 5 $ ThreeColMid nmaster delta ratio 
 

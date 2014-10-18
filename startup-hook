@@ -97,8 +97,6 @@ fi
 
 if [ -z "$(pgrep emacs)" ] ; then
     emacs &
-else
-    subl &
 fi
 
 mopidy &
