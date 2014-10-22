@@ -323,6 +323,8 @@ myManagementHooks = [
   [ resource =? r --> doShift (myWorkspaces !! 4) | r <- myArmyApps]
   ++
   [ resource =? r --> doFloat                | r <- myFloatApps]
+  ++
+  [ className =? r --> doFloat                | r <- myFloatAppsClass]
   where
     myChatApps       = ["hackspace.slack.com"]
     myIgnoredApps    = ["dzen2"]
@@ -333,6 +335,7 @@ myManagementHooks = [
                         ,"army-alsamixer"]
 
     javaApps         = "sun-awt-X11-XFramePeer"
+    myFloatAppsClass = ["Wine"]
     myFloatApps      = [ javaApps
                        , "simplescreenrecorder"
                        , "zeal"
