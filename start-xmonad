@@ -22,7 +22,7 @@ xrdb -merge .Xresources
 # ugly black fringing with some programs such as synapse that expect
 # transparency support.
 # xcompmgr -n &
-compton &
+# compton &
 
 
 #
