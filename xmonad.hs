@@ -228,7 +228,6 @@ defaultLayouts = smartBorders(avoidStruts(
 -- identified using the myIMRosterTitle variable, and by default is
 -- configured for Pidgin, so if you're using something else you
 -- will want to modify that variable.
-chatLayout = avoidStruts(withIM (1%7) (Title "CestDIego") Grid)
 
 -- The GIMP layout uses the ThreeColMid layout. The traditional GIMP
 -- floating panels approach is a bit of a challenge to handle with xmonad;
@@ -240,8 +239,7 @@ gimpLayout = smartBorders(avoidStruts(ThreeColMid 1 (3/100) (3/4)))
 
 -- Here we combine our default layouts with our specific, workspace-locked
 -- layouts.
-myLayouts =   onWorkspace (myWorkspaces !! 6) chatLayout
-            $ onWorkspace (myWorkspaces !! 0) (avoidStruts (fullScreen))
+myLayouts =  onWorkspace (myWorkspaces !! 0) (avoidStruts (fullScreen))
             -- $ onWorkspace (myWorkspaces !! 7) (avoidStruts (simplestFloat))
             $ onWorkspace (myWorkspaces !! 2) (avoidStruts (tiledSpace ||| fullTile) ||| fullScreen)
             $ onWorkspace (myWorkspaces !! 3) (avoidStruts (tiledSpace ||| fullTile) ||| fullScreen)

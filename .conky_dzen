@@ -5,17 +5,22 @@ out_to_x no
 # Update interval in seconds
 update_interval 0.1
 update_interval_on_battery 5
- 
+
 TEXT
+^ca(1,/home/io/.xmonad/sc /home/io/.xmonad/scripts/dzen_music.sh) \
+$if_mpd_playing^fg(\#636e74)^i(/home/io/.xmonad/dzen2/note.xbm) \
+^fg(\#bea492)${mpd_smart} -> ^fg(\#bea492)${mpd_percent}% \
+$endif^ca()\
 ^ca(1,/home/io/.xmonad/sc /home/io/.xmonad/scripts/dzen_hardware.sh) ^fg(\#636e74)\
 ${execi 2 /home/io/.xmonad/scripts/bar_ram.sh} ^fg(\#bea492)   ^ca()\
 ^ca(1,/home/io/.xmonad/sc /home/io/.xmonad/scripts/dzen_vol.sh) ^fg(\#636e74)\
 ${execi 2 /home/io/.xmonad/scripts/bar_vol.sh}^fg(\#bea492)   ^ca()\
-^ca(1,/home/io/.xmonad/sc /home/io/.xmonad/scripts/dzen_battery.sh)   ^fg(\#636e74)${execi 2 /home/io/.xmonad/scripts/bar_battery1.sh}^fg(\#bea492)   ^ca()\
-^ca(1,/home/io/.xmonad/sc /home/io/.xmonad/scripts/dzen_date.sh)   ^fg(\#636e74)^i(/home/io/.xmonad/dzen2/clock.xbm)  ^fg(\#bea492)${time %I:%M %P}   ^ca()
+^ca(1,/home/io/.xmonad/sc /home/io/.xmonad/scripts/dzen_battery.sh) \
+^fg(\#636e74)${execi 2 /home/io/.xmonad/scripts/bar_battery1.sh}^fg(\#bea492)   ^ca()\
+^ca(1,/home/io/.xmonad/sc /home/io/.xmonad/scripts/dzen_date.sh)   \
+^fg(\#636e74)^i(/home/io/.xmonad/dzen2/clock.xbm)  ^fg(\#bea492)${time %I:%M %P}   ^ca()
 # ^ca(1,/home/io/.xmonad/sc /home/io/.xmonad/scripts/dzen_log.sh)^fg(\#626262)^i(/home/io/.xmonad/dzen2/info_03.xbm)^fg(\#bea492)^ca()
 # ^ca(1,/home/io/.xmonad/sc /home/io/.xmonad/scripts/dzen_network.sh)   ^fg(\#636e74)${execi 2 /home/io/.xmonad/scripts/bar_wifi.sh} ^fg(\#bea492)${wireless_essid wlan0}   ^ca()\
-# ^ca(1,/home/io/.xmonad/sc /home/io/.xmonad/scripts/dzen_music.sh)$if_mpd_playing^fg(\#636e74)^i(/home/io/.xmonad/dzen2/note.xbm) ^fg(\#bea492)${mpd_artist}   ^ca()\
 
 # ^i(/home/io/.xmonad/dzen2/cpu.xbm) ^fg(\#FFFFFF)${cpu}% \
 # ^i(/home/io/.xmonad/dzen2/mem.xbm) ^fg(\#FFFFFF)${memperc}% ^fg(\#ebac54) ${if_existing /proc/net/route eth1} \
