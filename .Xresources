@@ -23,9 +23,7 @@
 ! first disable Keycap Picture insert mode
 URxvt.iso14755:         false
 URxvt.iso14755_52:      false
-
 URxvt*termName: rxvt-unicode-256color
-! URxvt*termName: rxvt-unicode
 
 ! urxvt term by term ################################
 URxvt*perl-lib:			/usr/lib/urxvt/perl
@@ -33,11 +31,14 @@ URxvt*perl-ext-common:		default,matcher,clipboard,font-size
 ! ,tabbedex
 URxvt*perl-matcher: 		1
 URxvt*matcher-button: 		3
-URxvt*url-launcher:		/usr/bin/google-chrome-stable
-!URxvt*matcher.button: 1
+URxvt.urlLauncher:              xdg-open                           
+URxvt.urlButton:                1                                    
+URxvt.underlineURLs:            True                             
+URxvt*matcher.button:           1
 !URxvt*matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 ! urxvt*cursorUnderline: 1
-Urxvt*letterspace: -5
+URxvt.saveLines:                2000                                 
+Urxvt*letterspace:              -5
 !urxvt*fading: 			10
 !urxvt*fadeColor: 		#000000	
 URxvt*cursorBlink:		true
@@ -46,7 +47,10 @@ URxvt*depth:			32
 ! URxvt.background:               [95]#000000
 URxvt*internalBorder: 		5
 URxvt*dynamicColors: on
-URxvt.urgentOnBell:  true
+
+URxvt.scrollstyle: rxvt                               
+urxvt*transparent: true                               
+urxvt*shading: 30                                     
 
 
 ! For Notify-send
@@ -70,6 +74,8 @@ Urxvt.font-size.step:  8
 URxvt.keysym.M-c: perl:clipboard:copy
 URxvt.keysym.M-v: perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.M-u: perl:url-select:select_next         
+URxvt.keysym.M-Escape: perl:keyboard-select:activate  
 ! nose para q del copy and paste
 URxvt.copyCommand:  xsel -ib
 URxvt.pasteCommand: xsel -ob

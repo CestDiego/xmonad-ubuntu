@@ -22,7 +22,7 @@ xrdb -merge .Xresources
 # ugly black fringing with some programs such as synapse that expect
 # transparency support.
 # xcompmgr -n &
-# compton &
+compton &
 
 
 #
@@ -82,14 +82,14 @@ xrandr | grep 'DP-1 connected' | ifne xrandr --output DP-1 --auto --left-of LVDS
 #   other words, trust xmonad to handle this part.
 #
 stalonetray \
-  --icon-gravity E \
-  --geometry 9x1-0+0 \
-  --max-geometry 9x1-0+0 \
-  --background '#1f1f1f' \
-  --skip-taskbar \
-  --icon-size 24 \
-  --kludges force_icons_size \
-  --window-strut none \
+    --icon-gravity E \
+    --geometry 9x1-0+0 \
+    --max-geometry 9x1-0+0 \
+    --background '#1f1f1f' \
+    --skip-taskbar \
+    --icon-size 24 \
+    --kludges force_icons_size \
+    --window-strut none \
 &
 
 
