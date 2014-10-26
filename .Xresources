@@ -27,7 +27,7 @@ URxvt*termName: rxvt-unicode-256color
 
 ! urxvt term by term ################################
 URxvt*perl-lib:			/usr/lib/urxvt/perl
-URxvt*perl-ext-common:		default,matcher,clipboard,font-size
+URxvt*perl-ext-common:		default,matcher,clipboard,keyboard-select,font-size
 ! ,tabbedex
 URxvt*perl-matcher: 		1
 URxvt*matcher-button: 		3
