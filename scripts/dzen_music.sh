@@ -41,5 +41,5 @@ feh -x -B black -^ "" -g 108x108+$(($XPOS-108))+$(($YPOS+12)) -Z "$art" &
         -x $XPOS -y $YPOS \
         -w $WIDTH -l $LINES \
         -e 'onstart=uncollapse,hide;button1=exit;button3=exit' & 
-sleep 15
+sleep 0.4
 killall feh
