@@ -454,11 +454,11 @@ myKeyBindings =
 
           
         -- Spotify controls
-        -- , ("<XF86Launch1>", spotifyCtrl dbusClient "PlayPause")
-        -- , ("<XF86AudioPlay>", spotifyCtrl dbusClient "PlayPause")
-        -- , ("<XF86AudioNext>", spotifyCtrl dbusClient "Next")
-        -- , ("<XF86AudioPrev>", spotifyCtrl dbusClient "Previous")
-        -- , ("<XF86AudioStop>", spotifyCtrl dbusClient "Stop")
+        -- , ("<XF86Launch1>", spawn "ncmpcpp nextPlayPause")
+        , ("<XF86AudioPlay>", spawn "ncmpcpp toggle")
+        , ("<XF86AudioNext>", spawn "ncmpcpp next")
+        , ("<XF86AudioPrev>", spawn "ncmpcpp prev")
+        , ("<XF86AudioStop>", spawn "ncmpcpp stop")
 
           
         -- Keyboard Layout
