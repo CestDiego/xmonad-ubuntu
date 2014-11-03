@@ -9,7 +9,7 @@ update_interval_on_battery 5
 TEXT
 ^ca(1,/home/io/.xmonad/sc /home/io/.xmonad/scripts/dzen_music.sh) \
 $if_mpd_playing^fg(\#636e74)^i(/home/io/.xmonad/dzen2/note.xbm) \
-^fg(\#bea492)${mpd_smart} -> ^fg(\#bea492)${mpd_percent}% \
+^fg(\#bea492)${mpd_smart 35} -> ^fg(\#bea492)${mpd_percent}% \
 $endif^ca()\
 ^ca(1,/home/io/.xmonad/sc /home/io/.xmonad/scripts/dzen_hardware.sh) ^fg(\#636e74)\
 ${execi 2 /home/io/.xmonad/scripts/bar_ram.sh} ^fg(\#bea492)   ^ca()\
