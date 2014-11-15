@@ -54,6 +54,6 @@ ln -s ~/.xmonad/compton.conf ~/.config/compton.conf;
 
 echo "Linking to customized gnome 2 configuration..."
 mv ~/.gtkrc-2.0 ~/gtkrc-2.0.original;
-ln -s .xmonad/.gtkrc-2.0 ~/.gtkrc-2.0;
+ln -s ~/.xmonad/.gtkrc-2.0 ~/.gtkrc-2.0;
 
 sed -i "s/\/home\/io/\/home\/$USER/g" .conky_dzen.bak scripts/*.sh
