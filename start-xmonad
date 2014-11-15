@@ -42,11 +42,11 @@ xrandr --output LVDS-1 --auto --primary
 
 # If we find that a screen is connected via VGA, activate it and position it
 # to the left of the primary screen.
-xrandr | grep 'VGA1 connected' | ifne xrandr --output VGA-1 --auto --left-of LVDS-1
+xrandr | grep 'VGA1 connected' | ifne xrandr --output VGA-1 --auto --right-of LVDS-1
 
 # If we find that a screen is connected via DVI, activate it and position it
 # to the left of the primary screen.
-xrandr | grep 'DP-1 connected' | ifne xrandr --output DP-1 --auto --left-of LVDS-1
+xrandr | grep 'DP-1 connected' | ifne xrandr --output DP-1 --auto --right-of LVDS-1
 
 
 #
