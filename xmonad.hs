@@ -154,6 +154,7 @@ myWorkspaces = clickable $ ["i"
 myScratchpads =
               -- [ NS "terminal" "urxvtc -name terminal -e tmux attach"     (resource =? "terminal") myPosition
               [ NS "terminal" "urxvt -name terminal"                                                 (resource =? "terminal") myTermPosition
+              , NS "hackspace" "urxvt -name hackspace -e ssh hackspace -t tmux attach || tmux new"                                                 (resource =? "hackspace") myTermPosition
               , NS "music" "urxvt -name playlist -e ncmpcpp"                             (resource =? "music")    myPositionBiggerSE
               -- , NS "clock" "urxvt -name clock -e ncmpcpp -s clock"                                   (resource =? "clock")    myPositionBiggerSW
               -- , NS "clock" "urxvt -name browser -e ncmpcpp -s browser"                                   (resource =? "browser")    myPositionBiggerSE
@@ -506,6 +507,7 @@ myKeyBindings =
 
     -- Scratchpads
         , ("M-g",               namedScratchpadAction myScratchpads "terminal")
+        , ("M-C-h",               namedScratchpadAction myScratchpads "hackspace")
         , ("M-M1-b",            namedScratchpadAction myScratchpads "rtorrent")
         , ("M-n",               namedScratchpadAction myScratchpads "music")
         , ("M-S-a",             namedScratchpadAction myScratchpads "alsa")
@@ -519,7 +521,8 @@ myKeyBindings =
 
 myBitmapsDir	= "dzen2/"
 
-background= "#1f1f1f"
+-- background= "#1f1f1f"
+background= "#0a0a0a"
 foreground= "#D6C3B6"
 color0=  "#332d29"
 color8=  "#817267"

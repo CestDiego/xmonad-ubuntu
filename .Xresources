@@ -1,5 +1,5 @@
 ! RATPOISON COLORS
-*background:#1f1f1f
+*background:#0a0a0a
 *foreground:#e8e9ca
 
 *color0:    #232323
@@ -26,18 +26,18 @@ URxvt.iso14755_52:      false
 URxvt*termName: rxvt-unicode-256color
 
 ! urxvt term by term ################################
-URxvt*perl-lib:			/usr/lib/urxvt/perl
-URxvt*perl-ext-common:		default,matcher,clipboard,keyboard-select,font-size
+URxvt*perl-lib:             /usr/lib/urxvt/perl
+URxvt*perl-ext-common:      default,matcher,clipboard,keyboard-select,font-size
 ! ,tabbedex
 URxvt*perl-matcher: 		1
-URxvt*matcher-button: 		3
-URxvt.urlLauncher:              xdg-open                           
-URxvt.urlButton:                1                                    
-URxvt.underlineURLs:            True                             
+URxvt*matcher-button:		3
+URxvt.urlLauncher:          xdg-open
+URxvt.urlButton:            1
+URxvt.underlineURLs:            Tru
 URxvt*matcher.button:           1
 !URxvt*matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 ! urxvt*cursorUnderline: 1
-URxvt.saveLines:                2000                                 
+URxvt.saveLines:                5000
 Urxvt*letterspace:              -5
 !urxvt*fading: 			10
 !urxvt*fadeColor: 		#000000	
@@ -48,9 +48,9 @@ URxvt*depth:			32
 URxvt*internalBorder: 		5
 URxvt*dynamicColors: on
 
-URxvt.scrollstyle: rxvt                               
-urxvt*transparent: true                               
-urxvt*shading: 30                                     
+URxvt.scrollstyle: rxvt
+urxvt*transparent: true
+urxvt*shading: 30
 
 
 ! For Notify-send
@@ -58,8 +58,8 @@ URxvt*urgentOnBell: true
 URxvt*visualBell:   false
 
 ! Font change settings
-URxvt.font:               xft:Monaco:size=13
-URxvt.boldfont:           xft:Monaco:size=13:Bold
+URxvt.font:               xft:Monaco:size=11
+URxvt.boldfont:           xft:Monaco:size=11:Bold
 
 URxvt.keysym.C-equal:	perl:font-size:increase
 URxvt.keysym.C-minus:   perl:font-size:decrease
@@ -121,7 +121,7 @@ xmessage*international:                true
 !xcalc-----------------------------------------------------------------------
 
 xcalc*geometry:                        200x275
-xcalc.ti.bevel.background:             #111111
+xcalc.ti.bevel.background:             #0a0a0a
 xcalc.ti.bevel.screen.background:      #000000
 xcalc.ti.bevel.screen.DEG.background:  #000000
 xcalc.ti.bevel.screen.DEG.foreground:  LightSeaGreen
