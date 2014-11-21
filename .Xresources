@@ -58,8 +58,8 @@ URxvt*urgentOnBell: true
 URxvt*visualBell:   false
 
 ! Font change settings
-URxvt.font:               xft:Monaco:size=11
-URxvt.boldfont:           xft:Monaco:size=11:Bold
+URxvt.font:               xft:Monaco:size=10
+URxvt.boldfont:           xft:Monaco:size=10:Bold
 
 URxvt.keysym.C-equal:	perl:font-size:increase
 URxvt.keysym.C-minus:   perl:font-size:decrease

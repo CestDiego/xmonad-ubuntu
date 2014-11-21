@@ -43,7 +43,7 @@ echo "\n Symbolic Linking .urxvt configuration to home directory \n"
 ln -s ~/.xmonad/.urxvt ~/.urxvt;
 
 echo "\n Backing up .Xresources as .Xresources.old you can check the differences for yourself\n"
-mv ~/.Xresources{,.old} ;
+mv ~/.Xresources ~/.Xresources.old 
 
 echo "Symbolic Linking .Xresources"
 ln -s ~/.xmonad/.Xresources ~/.Xresources;

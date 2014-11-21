@@ -154,6 +154,8 @@ myWorkspaces = clickable $ ["i"
 myScratchpads =
               -- [ NS "terminal" "urxvtc -name terminal -e tmux attach"     (resource =? "terminal") myPosition
               [ NS "terminal" "urxvt -name terminal"                                                 (resource =? "terminal") myTermPosition
+              , NS "tmux-terminal" "urxvt -name tmux-terminal -e sh -c 'tmux attach || tmux new'"            (resource =? "tmux-terminal") myTermPosition
+
               , NS "hackspace" "urxvt -name hackspace -e ssh hackspace -t tmux attach || tmux new"                                                 (resource =? "hackspace") myTermPosition
               , NS "music" "urxvt -name playlist -e ncmpcpp"                             (resource =? "music")    myPositionBiggerSE
               -- , NS "clock" "urxvt -name clock -e ncmpcpp -s clock"                                   (resource =? "clock")    myPositionBiggerSW
@@ -508,7 +510,8 @@ myKeyBindings =
         , ("M-<Print>",         spawn "imgur-screenshot -e && mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
 
     -- Scratchpads
-        , ("M-g",               namedScratchpadAction myScratchpads "terminal")
+        , ("M-S-g",               namedScratchpadAction myScratchpads "terminal")
+        , ("M-g",               namedScratchpadAction myScratchpads "tmux-terminal")
         , ("M-C-h",               namedScratchpadAction myScratchpads "hackspace")
         , ("M-M1-b",            namedScratchpadAction myScratchpads "rtorrent")
         , ("M-n",               namedScratchpadAction myScratchpads "music")
