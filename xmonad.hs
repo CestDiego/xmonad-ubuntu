@@ -502,8 +502,9 @@ myKeyBindings =
         , ("M-S-t",             raiseMaybe (runInTerm "-name newsbeuter" "newsbeuter") (resource =? "newsbeuter"))
         , ("M-C-j",             raiseMaybe (runInTerm "-name julia" "julia") (resource =? "julia"))
         , ("M-v",               raiseMaybe (runInTerm "-name weechat" "weechat-curses") (resource =? "weechat"))
-        , ("<Print>",           spawn " sleep 0.2; scrot -e 'mv $f /home/io/Pictures/Screenshots/' & mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
-        , ("M-<Print>",         spawn " sleep 0.2; scrot -s -e 'mv $f /home/io/Pictures/Screenshots/' & mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
+        -- , ("<Print>",           spawn " sleep 0.2; scrot -e 'mv $f /home/io/Pictures/Screenshots/' & mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
+        -- , ("M-<Print>",         spawn " sleep 0.2; scrot -s -e 'mv $f /home/io/Pictures/Screenshots/' & mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
+        , ("<Print>",         spawn "imgur-screenshot")
 
     -- Scratchpads
         , ("M-g",               namedScratchpadAction myScratchpads "terminal")

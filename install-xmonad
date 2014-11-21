@@ -51,6 +51,8 @@ ln -s ~/.xmonad/.Xresources ~/.Xresources;
 echo "Symbolic Linking Compton Configuration File"
 ln -s ~/.xmonad/compton.conf ~/.config/compton.conf;
 
+ln -s ~/.xmonad/scripts/custom/imgur-screenshot /usr/local/bin/imgur-screenshot 
+ln -s ~/.xmonad/scripts/custom/ncmpcpp-army /usr/local/bin/ncmpcpp-army 
 
 echo "Linking to customized gnome 2 configuration..."
 mv ~/.gtkrc-2.0 ~/gtkrc-2.0.original;
