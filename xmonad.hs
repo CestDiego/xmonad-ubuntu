@@ -504,7 +504,8 @@ myKeyBindings =
         , ("M-v",               raiseMaybe (runInTerm "-name weechat" "weechat-curses") (resource =? "weechat"))
         -- , ("<Print>",           spawn " sleep 0.2; scrot -e 'mv $f /home/io/Pictures/Screenshots/' & mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
         -- , ("M-<Print>",         spawn " sleep 0.2; scrot -s -e 'mv $f /home/io/Pictures/Screenshots/' & mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
-        , ("<Print>",         spawn "imgur-screenshot")
+        , ("<Print>",         spawn "imgur-screenshot && mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
+        , ("M-<Print>",         spawn "imgur-screenshot -e && mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
 
     -- Scratchpads
         , ("M-g",               namedScratchpadAction myScratchpads "terminal")
