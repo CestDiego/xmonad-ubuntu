@@ -1,0 +1,5 @@
+* Tasks
+*** TODO  Documment ALL keybindings                      <2014-11-21 Fri 20:25>
+And add them to a session in the readme
+
+ Link: file:~/.xmonad/xmonad.hs::--%20Scratchpads
