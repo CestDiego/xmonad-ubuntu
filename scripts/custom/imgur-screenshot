@@ -3,7 +3,7 @@
 # https://imgur.com/apps
 
 function is_mac() {
-  uname | grep -q "Darwin"
+    uname | grep -q "Darwin"
 }
 
 ### IMGUR-SCREENSHOT DEFAULT CONFIG ####
@@ -24,14 +24,16 @@ upload_timeout="120"
 upload_retries="1"
 
 if is_mac; then
-  screenshot_select_command="screencapture -i %img"
-  screenshot_window_command="screencapture -iWa %img"
-  open_command="open %url"
+    screenshot_select_command="screencapture -i %img"
+    screenshot_window_command="screencapture -iWa %img"
+    open_command="open %url"
 else
-  screenshot_select_command="scrot -s %img"
-  screenshot_window_command="scrot %img"
-  open_command="xdg-open %url"
+    screenshot_select_command="scrot -s %img"
+    screenshot_window_command="scrot %img"
+    open_command="xdg-open %url"
 fi
+
+# Do not  open the screenshot plz
 open="false"
 
 edit_command="gimp %img"
@@ -49,13 +51,13 @@ check_update="true"
 # You can override the config in ~/.config/imgur-screenshot/settings.conf
 settings_path="$HOME/.config/imgur-screenshot/settings.conf"
 if [ -f "$settings_path" ]; then
-  source "$settings_path"
+    source "$settings_path"
 fi
 
 # dependencie check
 if [ "$1" = "--check" ]; then
-  (which grep &>/dev/null && echo "OK: found grep") || echo "ERROR: grep not found"
-  if is_mac; then
+    (which grep &>/dev/null && echo "OK: found grep") || echo "ERROR: grep not found"
+    if is_mac; then
     if which growlnotify &>/dev/null; then
       echo "OK: found growlnotify"
     elif which terminal-notifier &>/dev/null; then
