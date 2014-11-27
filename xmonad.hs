@@ -489,11 +489,23 @@ myKeyBindings =
         , ("M-;",               sendMessage ZoomFullToggle)
 
     -- Apps
+        -- Emacs
+        , ("M-e",               spawn "emacs")
+        , ("M-S-e",             spawn "emacs --debug-init")
+        , ("M-i",               spawn "emacs --eval '(custom-persp/irc)' --eval '(persp-kill \"main\")'" )
+
+        -- Urxvt
         , ("M-M1-o",            runOrCopy "urxvt -name htop -e htop" (resource =? "htop"))
         , ("M-f",               raiseMaybe (runInTerm "-name ranger" "ranger") (resource =? "ranger"))
         , ("M-S-t",             raiseMaybe (runInTerm "-name newsbeuter" "newsbeuter") (resource =? "newsbeuter"))
         , ("M-C-j",             raiseMaybe (runInTerm "-name julia" "julia") (resource =? "julia"))
         , ("M-v",               raiseMaybe (runInTerm "-name weechat" "weechat-curses") (resource =? "weechat"))
+  
+        -- Google Apps
+        , ("M-S-h",             spawn "google-chrome --app=https://hackspace.slack.com")
+        , ("M-s",               spawn "google-chrome --app=https://gitter.im/syl20bnr/spacemacs")
+
+        -- Utility
         -- , ("<Print>",           spawn " sleep 0.2; scrot -e 'mv $f /home/io/Pictures/Screenshots/' & mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
         -- , ("M-<Print>",         spawn " sleep 0.2; scrot -s -e 'mv $f /home/io/Pictures/Screenshots/' & mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
         , ("<Print>",         spawn "imgur-screenshot && mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
