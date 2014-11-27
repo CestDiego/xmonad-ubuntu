@@ -126,25 +126,15 @@ myGSConfig colorizer  = (buildDefaultGSConfig myGridConfig)
   workspaces. 
 -}
 
--- myWorkspaces = [ "i"
--- 		,"ii"	
--- 		,"iii"	
--- 		,"iv"	
--- 		,"v"
--- 		,"vi"
--- 		,"vii"
--- 		,"viii"
--- 		,"ix"
---                 ]       
-myWorkspaces = clickable $ ["i"
-		,"ii"	
-		,"iii"	
-		,"iv"	
-		,"v"
-		,"vi"
-		,"vii"
-		,"viii"
-		,"ix"]	
+myWorkspaces = clickable $ ["1"
+		,"2"	
+		,"3"	
+		,"4"	
+		,"5"
+		,"6"
+		,"7"
+		,"8"
+		,"9"]	
 	where clickable l = [ "^ca(1,xdotool key super+" ++ show (n) ++ ")" ++ ws ++ "^ca()" |
 				(i,ws) <- zip [1..] l, let n = i ]
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
