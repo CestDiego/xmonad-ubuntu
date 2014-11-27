@@ -355,7 +355,7 @@ myManagementHooks = [
 --------------------------------------------------------------------------------------------------------------------
 myLogHook h = dynamicLogWithPP ( defaultPP
 	{
-		  ppCurrent		= dzenColor color15 background .	pad
+		  ppCurrent		= dzenColor important background .	pad
 		, ppVisible		= dzenColor color14 background . 	pad
                 -- display other workspaces which contain windows as a brighter grey
 		, ppHidden		= dzenColor color7 background . 	pad
@@ -517,8 +517,8 @@ myKeyBindings =
 myBitmapsDir	= "dzen2/"
 
 -- background= "#1f1f1f"
-background= "#0a0a0a"
-foreground= "#D6C3B6"
+background= "#1a1a1a"
+foreground= "#636e74"
 color0=  "#332d29"
 color8=  "#817267"
 color1=  "#8c644c"
@@ -535,3 +535,5 @@ color6=  "#4B5C5E"
 color14= "#556D70"
 color7=  "#504339"
 color15= "#9a875f"
+
+important= "#636e74"
