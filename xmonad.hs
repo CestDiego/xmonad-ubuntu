@@ -146,7 +146,8 @@ myScratchpads =
               [ NS "terminal" "urxvt -name terminal"                                                 (resource =? "terminal") myTermPosition
               , NS "tmux-terminal" "urxvt -name tmux-terminal -e sh -c 'tmux attach || tmux new'"            (resource =? "tmux-terminal") myTermPosition
 
-              , NS "hackspace" "urxvt -name hackspace -e ssh hackspace -t tmux attach || tmux new"                                                 (resource =? "hackspace") myTermPosition
+              , NS "hackspace" "urxvt -name hackspace -e ssh hackspace -t tmux attach || tmux new"                                                (resource =? "hackspace") myTermPosition
+              , NS "quick-nautilus"    "nautilus ~/Documents"                                     (resource =? "quickNautilus") myTermPosition
               , NS "music" "urxvt -name playlist -e ncmpcpp"                             (resource =? "music")    myPositionBiggerSE
               -- , NS "clock" "urxvt -name clock -e ncmpcpp -s clock"                                   (resource =? "clock")    myPositionBiggerSW
               -- , NS "clock" "urxvt -name browser -e ncmpcpp -s browser"                                   (resource =? "browser")    myPositionBiggerSE
@@ -306,8 +307,8 @@ myManagementHooks = [
    (className =? "Gimp") --> doF (W.shift "ix")
   ]
   ++
-  [ resource =? r  --> doShift (myWorkspaces !! 5) | r <- myFolderApps]
-  ++
+  -- [ resource =? r  --> doShift (myWorkspaces !! 5) | r <- myFolderApps]
+  -- ++
   [ resource =? r  --> doIgnore | r <- myIgnoredApps]
   ++
   [ resource =? r --> doShift (myWorkspaces !! 6) | r <- myChatApps]
@@ -320,7 +321,7 @@ myManagementHooks = [
   where
     myChatApps       = ["hackspace.slack.com"]
     myIgnoredApps    = ["dzen2"]
-    myFolderApps     = ["nautilus"]
+    -- myFolderApps     = ["nautilus"]
     myArmyApps       = ["army-browser"
                         ,"army-clock"
                         ,"army-playlist"
@@ -504,6 +505,7 @@ myKeyBindings =
         -- Google Apps
         , ("M-S-h",             spawn "google-chrome --app=https://hackspace.slack.com")
         , ("M-s",               spawn "google-chrome --app=https://gitter.im/syl20bnr/spacemacs")
+        , ("M-m",               spawn "google-chrome --app=https://maps.google.com")
 
         -- Utility
         -- , ("<Print>",           spawn " sleep 0.2; scrot -e 'mv $f /home/io/Pictures/Screenshots/' & mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
@@ -514,6 +516,8 @@ myKeyBindings =
     -- Scratchpads
         , ("M-S-g",               namedScratchpadAction myScratchpads "terminal")
         , ("M-g",               namedScratchpadAction myScratchpads "tmux-terminal")
+        , ("M-S-f",               namedScratchpadAction myScratchpads "quick-nautilus")
+        , ("M-C-h",               namedScratchpadAction myScratchpads "hackspace")
         , ("M-C-h",               namedScratchpadAction myScratchpads "hackspace")
         , ("M-M1-b",            namedScratchpadAction myScratchpads "rtorrent")
         , ("M-n",               namedScratchpadAction myScratchpads "music")
