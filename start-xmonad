@@ -114,6 +114,8 @@ xbacklight -set 50
 
 ibus exit
 
-megasync &
+dropbox start &
+# megasync &
+
 # Now, finally, start xmonad
 exec xmonad
