@@ -457,6 +457,7 @@ myKeyBindings =
 
           
         -- Keyboard Layout
+        , ("M-S-m",             spawn "setxkbmap -option ctrl:nocaps")  
         , ("M-S-d",             spawn "setxkbmap -layout us")
         , ("M-S-s",             spawn "setxkbmap -layout es")
 
@@ -491,8 +492,8 @@ myKeyBindings =
 
     -- Apps
         -- Emacs
-        , ("M-e",               spawn "emacs")
-        , ("M-S-e",             spawn "emacs --debug-init")
+        , ("M-C-e",               spawn "emacs")
+        , ("M--C-S-e",             spawn "emacs --debug-init")
         , ("M-i",               spawn "emacs --eval '(custom-persp/irc)' --eval '(persp-kill \"main\")'" )
 
         -- Urxvt
