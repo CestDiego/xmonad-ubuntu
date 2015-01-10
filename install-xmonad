@@ -29,10 +29,15 @@ sudo apt-add-repository ppa:peterlevi/ppa -y;
 echo "\n Updating repositories\n"
 sudo apt-get update;
 
-echo "\n Installing required packages...\n"
-sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar nitrogen \
-     compton stalonetray moreutils consolekit ssh-askpass-gnome xbacklight ranger htop xsel \
-     acpi gimp rxvt-unicode-256color dmenu scrot mplayer variety conky sysstat xdotool dzen2 tmux ghc-mod -y ;
+echo "\n Installing required packages..."
+sudo apt-get install  nitrogen compton stalonetray moreutils consolekit ssh-askpass-gnome xbacklight ranger htop xsel \
+     acpi gimp rxvt-unicode-256color dmenu scrot mplayer variety conky sysstat xdotool dzen2 tmux-y ;
+
+echo "\n Installing Haskell packages..."
+sudo apt-get install  ghc-mod haskell-platform ghc-dynamic -y
+
+echo "\n Installing Xmonad packages..."
+sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar -y
 
 echo "\n Creating xmonad xsession configuration...\n"
 sudo mv /usr/share/xsessions/xmonad.desktop /usr/share/xsessions/xmonad.desktop.original ;

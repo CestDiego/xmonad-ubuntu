@@ -112,10 +112,11 @@ echo "0" | sudo tee -a /sys/devices/platform/asus-nb-wmi/leds/asus::kbd_backligh
 #Plz low screen brightness
 xbacklight -set 50
 
-ibus exit
-
 dropbox start &
 # megasync &
+
+ibus exit
+
 
 # Now, finally, start xmonad
 exec xmonad

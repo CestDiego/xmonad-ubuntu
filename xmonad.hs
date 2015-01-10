@@ -92,6 +92,7 @@ myColorBrown    = "#989584"
 
 myHomeDir       = getEnv "HOME"
 
+
 -- Prompts colors
 myPromptConfig =
     defaultXPConfig { font                  = myFont
