@@ -333,6 +333,7 @@ myManagementHooks = [
     myFloatApps      = [ javaApps
                        , "simplescreenrecorder"
                        , "zeal"
+                       , "nm-connection-editor"
                        , "player"
                        , "genymotion"
                        , "skype"
