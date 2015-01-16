@@ -343,6 +343,7 @@ myManagementHooks = [
                        , "Eclipse"
                        , "Android SDK Manager"
                        , "GMATPrep.exe"
+                       , "crx_nckgahadagoaajjgafhacjanaoiihapd"
                        , "variety"]
 
 
