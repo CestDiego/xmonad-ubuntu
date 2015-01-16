@@ -341,6 +341,7 @@ myManagementHooks = [
                        , "crx_hkhggnncdpfibdhinjiegagmopldibha" -- This is THe Google Calendar Stuff, change it if it changes
                        , "crx_knipolnnllmklapflnccelgolnpehhpl" -- THis is fucking Google Hangouts
                        , "Eclipse"
+                       , "gtk-chtheme"
                        , "Android SDK Manager"
                        , "GMATPrep.exe"
                        , "crx_nckgahadagoaajjgafhacjanaoiihapd"

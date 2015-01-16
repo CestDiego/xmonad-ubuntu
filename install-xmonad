@@ -31,7 +31,7 @@ sudo apt-get update;
 
 echo "\n Installing required packages..."
 sudo apt-get install  nitrogen compton stalonetray moreutils consolekit ssh-askpass-gnome xbacklight ranger htop xsel \
-     acpi gimp rxvt-unicode-256color dmenu scrot mplayer variety conky sysstat xdotool dzen2 tmux-y ;
+     acpi gimp rxvt-unicode-256color dmenu scrot mplayer variety conky sysstat xdotool dzen2 tmux gtk-chtheme -y ;
 
 echo "\n Installing Haskell packages..."
 sudo apt-get install  ghc-mod haskell-platform ghc-dynamic -y
@@ -59,8 +59,8 @@ ln -s ~/.xmonad/compton.conf ~/.config/compton.conf;
 sudo ln -s ~/.xmonad/scripts/custom/imgur-screenshot /usr/local/bin/imgur-screenshot 
 sudo ln -s ~/.xmonad/scripts/custom/ncmpcpp-army /usr/local/bin/ncmpcpp-army 
 
-echo "Linking to customized gnome 2 configuration..."
-mv ~/.gtkrc-2.0 ~/gtkrc-2.0.original;
-ln -s ~/.xmonad/.gtkrc-2.0 ~/.gtkrc-2.0;
+# echo "Linking to customized gnome 2 configuration..."
+# mv ~/.gtkrc-2.0 ~/gtkrc-2.0.original;
+# ln -s ~/.xmonad/.gtkrc-2.0 ~/.gtkrc-2.0;
 
 sed -i "s/\/home\/io/\/home\/$USER/g" .conky_dzen scripts/*.sh xmonad.hs status_bar 
