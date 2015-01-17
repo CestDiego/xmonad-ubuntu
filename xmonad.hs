@@ -437,7 +437,7 @@ main = do
 myKeyBindings =
   [
           ("M-b", sendMessage ToggleStruts)
-        , ("M-p", spawn "exe=`dmenu_path | dmenu_run -fn xft:Monaco:bold:pixelsize=24` && eval \"exec $exe\"")
+        , ("M-p", spawn "exe=`dmenu_path | dmenu_run -fn Monaco-72` && eval \"exec $exe\"")
         , ("<XF86AudioMute>",   spawn "amixer set Master toggle")
         , ("<XF86AudioLowerVolume>", spawn "amixer set Master 5%- unmute")
         , ("<XF86AudioRaiseVolume>", spawn "amixer set Mater 5%+ unmute")

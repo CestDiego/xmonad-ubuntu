@@ -26,6 +26,8 @@ echo "Installation Starting\n"
 
 sudo apt-add-repository ppa:peterlevi/ppa -y;
 
+sudo apt-add-repository ppa:minos-archive/ppa -y;
+
 echo "\n Updating repositories\n"
 sudo apt-get update;
 
