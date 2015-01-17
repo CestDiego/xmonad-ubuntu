@@ -491,7 +491,6 @@ myKeyBindings =
         , ("M-h",               sendMessage Shrink)
         , ("M-l",               sendMessage Expand)
         , ("M-S-;",             sendMessage zoomReset)
-          
         , ("M-;",               sendMessage ZoomFullToggle)
 
     -- Apps
