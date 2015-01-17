@@ -338,6 +338,7 @@ myManagementHooks = [
                        , "genymotion"
                        , "skype"
                        , "Monitor"
+                       , "Hangouts"
                        , "crx_hkhggnncdpfibdhinjiegagmopldibha" -- This is THe Google Calendar Stuff, change it if it changes
                        , "crx_knipolnnllmklapflnccelgolnpehhpl" -- THis is fucking Google Hangouts
                        , "Eclipse"
@@ -397,8 +398,6 @@ myStatusBar = "/home/io/.xmonad/status_bar '"
               foreground ++ "' '" ++
               background ++"' "++
               myFont
-
-
 
               
 main = do
@@ -492,6 +491,7 @@ myKeyBindings =
         , ("M-h",               sendMessage Shrink)
         , ("M-l",               sendMessage Expand)
         , ("M-S-;",             sendMessage zoomReset)
+          
         , ("M-;",               sendMessage ZoomFullToggle)
 
     -- Apps
