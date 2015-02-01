@@ -19,7 +19,6 @@ FONT="xft:Monaco"
 #FONT='-*-lemon-*-*-*-*-*-*-75-75-*-*-*-*'
 #FONT="-*-tewi-medium-*-normal-*-*-*-*-*-*-*-*-*"
 white0="#775759"
-
 bar_bg="#3f3f3f"
 bar_fg="#d17b49"
 notify="#Cd3700"
