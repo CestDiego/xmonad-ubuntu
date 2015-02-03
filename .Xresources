@@ -45,12 +45,12 @@ URxvt*cursorBlink:		true
 URxvt*scrollBar:		false
 URxvt*depth:			32 
 ! URxvt.background:               [95]#000000
-URxvt*internalBorder: 		5
+URxvt*internalBorder: 		0
 URxvt*dynamicColors: on
 
 URxvt.scrollstyle: rxvt
 urxvt*transparent: true
-urxvt*shading: 30
+urxvt*shading: 0
 
 
 ! For Notify-send

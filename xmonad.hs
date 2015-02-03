@@ -80,7 +80,7 @@ import           XMonad.Prompt (defaultXPConfig, XPConfig(..), XPPosition(Top), 
 
 myModMask            = mod4Mask       -- changes the mod key to "super"
 myBorderWidth        = 1              -- width of border around windows
-myFocusedBorderColor = "#746C48"
+myFocusedBorderColor = "#2f2f2f"
 myNormalBorderColor  = "#1f1f1f"
 myTerminal           = "urxvt"   -- which terminal software to use
 
@@ -336,6 +336,7 @@ myManagementHooks = [
                        , "nm-connection-editor"
                        , "player"
                        , "genymotion"
+                       , "VidyoDesktop"
                        , "skype"
                        , "Monitor"
                        , "Hangouts"
