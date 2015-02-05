@@ -80,7 +80,7 @@ import           XMonad.Prompt (defaultXPConfig, XPConfig(..), XPPosition(Top), 
 
 myModMask            = mod4Mask       -- changes the mod key to "super"
 myBorderWidth        = 1              -- width of border around windows
-myFocusedBorderColor = "#2f2f2f"
+myFocusedBorderColor = "red"
 myNormalBorderColor  = "#1f1f1f"
 myTerminal           = "urxvt"   -- which terminal software to use
 
@@ -467,7 +467,8 @@ myKeyBindings =
 
         -- Workspace Navigation
         , ("M-`",               moveTo Prev NonEmptyWS)
-
+        , ("M-S-.",               nextWS)
+        , ("M-S-,",               prevWS)
         , ("M-C-M1-<Up>",       sendMessage Arrange)
         , ("M-C-M1-<Down>",     sendMessage DeArrange)
         , ("M-<Up>",            sendMessage (MoveUp 10))
