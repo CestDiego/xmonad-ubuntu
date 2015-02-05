@@ -469,6 +469,8 @@ myKeyBindings =
         , ("M-`",               moveTo Prev NonEmptyWS)
         , ("M-S-.",               nextWS)
         , ("M-S-,",               prevWS)
+        , ("M-C-S-.",               shiftToNext >> nextWS)
+        , ("M-C-S-,",               shiftToPrev >> prevWS)
         , ("M-C-M1-<Up>",       sendMessage Arrange)
         , ("M-C-M1-<Down>",     sendMessage DeArrange)
         , ("M-<Up>",            sendMessage (MoveUp 10))
