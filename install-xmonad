@@ -33,7 +33,7 @@ sudo apt-get update;
 
 echo "\n Installing required packages..."
 sudo apt-get install  nitrogen compton stalonetray moreutils consolekit ssh-askpass-gnome xbacklight ranger htop xsel \
-     acpi gimp rxvt-unicode-256color dmenu scrot mplayer variety conky sysstat xdotool dzen2 tmux gtk-chtheme -y ;
+     acpi gimp rxvt-unicode-256color dmenu scrot mplayer variety conky sysstat xdotool dzen2 tmux gtk-chtheme ditaa -y ;
 
 echo "\n Installing Haskell packages..."
 sudo apt-get install  ghc-mod haskell-platform ghc-dynamic -y
