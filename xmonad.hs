@@ -124,18 +124,18 @@ myGSConfig colorizer  = (buildDefaultGSConfig myGridConfig)
 
 {-
   Workspace configuration. Here you can change the names of your
-  workspaces. 
+  workspaces.
 -}
 
 myWorkspaces = clickable $ ["1"
-		,"2"	
-		,"3"	
-		,"4"	
+		,"2"
+		,"3"
+		,"4"
 		,"5"
 		,"6"
 		,"7"
 		,"8"
-		,"9"]	
+		,"9"]
 	where clickable l = [ "^ca(1,xdotool key super+" ++ show (n) ++ ")" ++ ws ++ "^ca()" |
 				(i,ws) <- zip [1..] l, let n = i ]
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -243,19 +243,19 @@ myLayouts =  onWorkspace (myWorkspaces !! 0) (avoidStruts (fullScreen))
             $ defaultLayouts
             where
                 myMusic            =   limitWindows 4  $ spacing 36 $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (2/3) (2/3)
-		tiled  		= spacing 5 $ ResizableTall nmaster delta ratio [] 
+		tiled  		= spacing 5 $ ResizableTall nmaster delta ratio []
 
                 fullScreen 	= noBorders(fullscreenFull Full)
-                tiledSpace  	= limitWindows 4 $ spacing 34 $ ResizableTall nmaster delta ratio [] 
-                fullTile        = ResizableTall nmaster delta ratio [] 
-                bigMonitor  	= spacing 5 $ ThreeColMid nmaster delta ratio 
+                tiledSpace  	= limitWindows 4 $ spacing 34 $ ResizableTall nmaster delta ratio []
+                fullTile        = ResizableTall nmaster delta ratio []
+                bigMonitor  	= spacing 5 $ ThreeColMid nmaster delta ratio
 
                 -- Default number of windows in master pane
                 nmaster = 1
                 -- Percent of the screen to increment when resizing
                 delta 	= 5/100
                 -- Default proportion of the screen taken up by main pane
-                ratio 	= toRational (2/(1 + sqrt 5 :: Double)) 
+                ratio 	= toRational (2/(1 + sqrt 5 :: Double))
 
 
 
@@ -377,7 +377,7 @@ myLogHook h = dynamicLogWithPP ( defaultPP
 					"SimplestFloat"			->	"^i(/home/io/.xmonad/dzen2/mouse_01.xbm)"
 					"Circle"			->	"^i(/home/io/.xmonad/dzen2/full.xbm)"
 					_				->	"^i(/home/io/.xmonad/dzen2/grid.xbm)"
-				) 
+				)
 		-- , ppTitle	=  wrap "^ca(1,xdotool key alt+shift+x)^fg(#D23D3D)^fn(fkp)x ^fn()" "^ca()" . dzenColor foreground background . shorten 60 . pad
 		-- , ppTitle	=  wrap "^ca(1,xdotool key super+C)" "^ca()" . dzenColor color15 background . shorten 100 . pad
 		, ppTitle	=  dzenColor color15 background . shorten 100 . pad
@@ -400,7 +400,6 @@ myStatusBar = "/home/io/.xmonad/status_bar '"
               background ++"' "++
               myFont
 
-              
 main = do
   -- xmproc <- spawnPipe "xmobar /home/io/.xmonad/xmobarrc"
   dzenLeftBar     <- spawnPipe myXmonadBar
@@ -443,7 +442,7 @@ myKeyBindings =
         , ("<XF86AudioRaiseVolume>", spawn "amixer set Mater 5%+ unmute")
         , ("<XF86MonBrightnessUp>", spawn "xbacklight +20")
         , ("<XF86MonBrightnessDown>", spawn "xbacklight -20")
-        
+
         , ("M-q", spawn "killall dzen2; killall conky; killall tint2; cd ~/.xmonad; ghc -threaded xmonad.hs; mv xmonad xmonad-x86_64-linux; xmonad --restart" )
     -- , ((0, 0x1008FF12), spawn "amixer -q set Master toggle")
     -- , ((0, 0x1008FF11), spawn "amixer -q set Master 10%-")
@@ -451,7 +450,7 @@ myKeyBindings =
         -- , ((0, 0x1008FF13), spawn "amixer -q set Master 10%+")
     -- , ((myModMask .|. mod1Mask, xK_space), spawn "synapse")
 
-          
+
         -- Spotify controls
         -- , ("<XF86Launch1>", spawn "ncmpcpp nextPlayPause")
         , ("<XF86AudioPlay>", spawn "ncmpcpp toggle")
@@ -459,7 +458,7 @@ myKeyBindings =
         , ("<XF86AudioPrev>", spawn "ncmpcpp prev")
         , ("<XF86AudioStop>", spawn "ncmpcpp stop")
 
-          
+
         -- Keyboard Layout
         , ("M-S-m",             spawn "setxkbmap -option ctrl:nocaps")  
         , ("M-S-d",             spawn "setxkbmap -layout us")
@@ -509,7 +508,7 @@ myKeyBindings =
         , ("M-S-t",             raiseMaybe (runInTerm "-name newsbeuter" "newsbeuter") (resource =? "newsbeuter"))
         , ("M-C-j",             raiseMaybe (runInTerm "-name julia" "julia") (resource =? "julia"))
         , ("M-v",               raiseMaybe (runInTerm "-name weechat" "weechat-curses") (resource =? "weechat"))
-  
+
         -- Google Apps
         , ("M-S-h",             spawn "google-chrome --app=https://hackspace.slack.com")
         , ("M-s",               spawn "google-chrome --app=https://gitter.im/syl20bnr/spacemacs")
