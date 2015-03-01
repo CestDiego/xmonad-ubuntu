@@ -3,7 +3,7 @@
 # https://imgur.com/apps
 
 function is_mac() {
-    uname | grep -q "Darwin"
+  uname | grep -q "Darwin"
 }
 
 ### IMGUR-SCREENSHOT DEFAULT CONFIG ####
@@ -17,24 +17,22 @@ login="false"
 credentials_file="$HOME/.config/imgur-screenshot/credentials.conf"
 
 file_name_format="imgur-%Y_%m_%d-%H:%M:%S.png" # when using scrot, must end with .png!
-file_dir="$HOME/Pictures/Screenshots"
+file_dir="$HOME/Pictures"
 
 upload_connect_timeout="5"
 upload_timeout="120"
 upload_retries="1"
 
 if is_mac; then
-    screenshot_select_command="screencapture -i %img"
-    screenshot_window_command="screencapture -iWa %img"
-    open_command="open %url"
+  screenshot_select_command="screencapture -i %img"
+  screenshot_window_command="screencapture -iWa %img"
+  open_command="open %url"
 else
-    screenshot_select_command="scrot -s %img"
-    screenshot_window_command="scrot %img"
-    open_command="xdg-open %url"
+  screenshot_select_command="scrot -s %img"
+  screenshot_window_command="scrot %img"
+  open_command="xdg-open %url"
 fi
-
-# Do not  open the screenshot plz
-open="false"
+open="true"
 
 edit_command="gimp %img"
 edit="false"
@@ -51,13 +49,13 @@ check_update="true"
 # You can override the config in ~/.config/imgur-screenshot/settings.conf
 settings_path="$HOME/.config/imgur-screenshot/settings.conf"
 if [ -f "$settings_path" ]; then
-    source "$settings_path"
+  source "$settings_path"
 fi
 
 # dependencie check
 if [ "$1" = "--check" ]; then
-    (which grep &>/dev/null && echo "OK: found grep") || echo "ERROR: grep not found"
-    if is_mac; then
+  (which grep &>/dev/null && echo "OK: found grep") || echo "ERROR: grep not found"
+  if is_mac; then
     if which growlnotify &>/dev/null; then
       echo "OK: found growlnotify"
     elif which terminal-notifier &>/dev/null; then
@@ -111,8 +109,7 @@ function take_screenshot() {
       echo "Couldn't make selective shot (mouse trapped?)."
       echo "Trying to grab active window instead."
       if ! ($screenshot_window_command &>/dev/null); then
-        echo "Error for image '$1': '$shot_err'. For more information visit https://github.com/jomo/imgur-screenshot#troubleshooting" >> "$log_file"
-        echo "Error for image '$1': '$shot_err'. For more information visit https://github.com/jomo/imgur-screenshot#troubleshooting"
+        echo "Error for image '$1': '$shot_err'. For more information visit https://github.com/jomo/imgur-screenshot#troubleshooting" | tee "$log_file"
         notify error "Something went wrong :(" "Information has been logged"
         exit 1
       fi
@@ -186,7 +183,7 @@ function acquire_access_token() {
   fi
 
   # exchange the PIN for access token and refresh token
-  response="$(curl -s \
+  response="$(curl -fsSL --stderr - \
     -F "client_id=$imgur_acct_key" \
     -F "client_secret=$imgur_secret" \
     -F "grant_type=pin" \
@@ -198,7 +195,7 @@ function acquire_access_token() {
 function refresh_access_token() {
   check_oauth2_client_secrets
   # exchange the refresh token for access_token and refresh_token
-  response="$(curl -s -F "client_id=$imgur_acct_key" -F "client_secret=$imgur_secret" -F "grant_type=refresh_token" -F "refresh_token=$refresh_token" https://api.imgur.com/oauth2/token)"
+  response="$(curl -fsSL --stderr - -F "client_id=$imgur_acct_key" -F "client_secret=$imgur_secret" -F "grant_type=refresh_token" -F "refresh_token=$refresh_token" https://api.imgur.com/oauth2/token)"
   if [ ! "$?" -eq "0" ]; then
     # curl failed
     echo "Error: Couldn't get access token from 'https://api.imgur.com/oauth2/token'"
@@ -218,7 +215,7 @@ function save_access_token() {
   access_token="$(egrep -o 'access_token":".*"' <<<"$1" | cut -d '"' -f 3)"
   refresh_token="$(egrep -o 'refresh_token":".*"' <<<"$1" | cut -d '"' -f 3)"
   expires_in="$(egrep -o 'expires_in":".*"' <<<"$1" | cut -d '"' -f 3)"
-  token_expire_time=$((`date +%s`+expires_in))
+  token_expire_time="$(( $(date +%s) + expires_in ))"
 
   # create dir if not exist
   mkdir -p "$(dirname "$2")" 2>/dev/null
@@ -231,30 +228,31 @@ EOF
 }
 
 function fetch_account_info() {
-  response="$(curl -s -H "Authorization: Bearer $access_token" https://api.imgur.com/3/account/me.xml)"
-  account_url="$(echo $response | egrep -o "<url>.*</url>" | cut -d ">" -f 2 | cut -d "<" -f 1)"
+  response="$(curl -fsSL --stderr - -H "Authorization: Bearer $access_token" https://api.imgur.com/3/account/me.xml)"
+  account_url="$(echo "$response" | egrep -o "<url>.*</url>" | cut -d ">" -f 2 | cut -d "<" -f 1)"
   echo "Connected to https://$account_url.imgur.com"
 }
 
 function upload_authenticated_image() {
   echo "Uploading '$1'..."
-  response="$(curl --connect-timeout "$upload_connect_timeout" -m "$upload_timeout" --retry "$upload_retries" -s -F "image=@$1" -H "Authorization: Bearer $access_token" https://api.imgur.com/3/image.xml)"
+  response="$(curl --connect-timeout "$upload_connect_timeout" -m "$upload_timeout" --retry "$upload_retries" -fsSL --stderr - -F "image=@$1" -H "Authorization: Bearer $access_token" https://api.imgur.com/3/image.xml)"
   # imgur response contains success="1" when successful
   if [[ "$response" == *"success=\"1\""* ]]; then
     # cutting the url from the xml response
-    img_url="$(echo $response | egrep -o "<link>.*</link>" | cut -d ">" -f 2 | cut -d "<" -f 1)"
-    deletehash="$(echo $response | egrep -o "<deletehash>.*</deletehash>" | cut -d ">" -f 2 | cut -d "<" -f 1)"
+    img_url="$(echo "$response" | egrep -o "<link>.*</link>" | cut -d ">" -f 2 | cut -d "<" -f 1)"
+    deletehash="$(echo "$response" | egrep -o "<deletehash>.*</deletehash>" | cut -d ">" -f 2 | cut -d "<" -f 1)"
     del_url="https://imgur.com/delete/$deletehash"
     handle_upload_success "$img_url" "$del_url" "$1"
   else # upload failed
-    err_msg="$(echo $response | egrep -o "<error>.*</error>" | cut -d ">" -f 2 | cut -d "<" -f 1)"
+    err_msg="$(echo "$response" | egrep -o "<error>.*</error>" | cut -d ">" -f 2 | cut -d "<" -f 1)"
+    test -z "$err_msg" && err_msg="$response"
     handle_upload_error "$err_msg" "$1"
   fi
 }
 
 function upload_anonymous_image() {
   echo "Uploading '$1'..."
-  response="$(curl --connect-timeout "$upload_connect_timeout" -m "$upload_timeout" --retry "$upload_retries" -s -F "image=@$1" -F "key=$imgur_anon_key" https://imgur.com/api/upload.xml)"
+  response="$(curl --connect-timeout "$upload_connect_timeout" -m "$upload_timeout" --retry "$upload_retries" -fsSL --stderr - -F "image=@$1" -F "key=$imgur_anon_key" https://imgur.com/api/upload.xml)"
 
   # imgur response contains stat="ok" when successful
   if [[ "$response" == *"stat=\"ok\""*  ]]; then
@@ -264,6 +262,7 @@ function upload_anonymous_image() {
     handle_upload_success "$img_url" "$del_url" "$1"
   else # upload failed
     err_msg="$(egrep -o "<error_msg>.*</error_msg>" <<<"$response" | cut -d ">" -f 2 | cut -d "<" -f 1)"
+    test -z "$err_msg" && err_msg="$response"
     handle_upload_error "$err_msg" "$1"
   fi
 }
@@ -387,7 +386,7 @@ if [ "$login" = "true" ]; then
 fi
 
 if [ -z "$upload_file" ]; then
-  cd $file_dir
+  cd "$file_dir"
 
   # new filename with date
   img_file="$(date +"$file_name_format")"
@@ -398,15 +397,14 @@ else
 fi
 
 # get full path
-img_file="$(cd "$( dirname "$img_file")" && echo "`pwd`/`basename "$img_file"`")"
+img_file="$(cd "$( dirname "$img_file")" && echo "$(pwd)/$(basename "$img_file")")"
 
 # open image in editor if configured
 if [ "$edit" = "true" ]; then
   edit_command=${edit_command/\%img/$img_file}
   echo "Opening editor '$edit_command'"
   if ! (eval "$edit_command"); then
-    echo "Error for image '$img_file': command '$edit_command' failed, not uploading. For more information visit https://github.com/jomo/imgur-screenshot#troubleshooting" >> "$log_file"
-    echo "Error for image '$img_file': command '$edit_command' failed, not uploading. For more information visit https://github.com/jomo/imgur-screenshot#troubleshooting"
+    echo "Error for image '$img_file': command '$edit_command' failed, not uploading. For more information visit https://github.com/jomo/imgur-screenshot#troubleshooting" | tee "$log_file"
     notify error "Something went wrong :(" "Information has been logged"
     exit 1
   fi

@@ -23,6 +23,7 @@
 ! first disable Keycap Picture insert mode
 URxvt.iso14755:         false
 URxvt.iso14755_52:      false
+sURxvt*title: urxvt
 URxvt*termName: rxvt-unicode-256color
 
 ! urxvt term by term ################################
@@ -33,7 +34,7 @@ URxvt*perl-matcher: 		1
 URxvt*matcher-button:		3
 URxvt.urlLauncher:          xdg-open
 URxvt.urlButton:            1
-URxvt.underlineURLs:            Tru
+URxvt.underlineURLs:            True
 URxvt*matcher.button:           1
 !URxvt*matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 ! urxvt*cursorUnderline: 1
@@ -52,14 +53,25 @@ URxvt.scrollstyle: rxvt
 urxvt*transparent: true
 urxvt*shading: 0
 
+! xterm 
+!----------------------------------------------------------------------
+xterm*faceName: xft:DejaVu Sans Mono for Powerline:pixelsize=14:antialias=true
 
 ! For Notify-send
 URxvt*urgentOnBell: true
 URxvt*visualBell:   false
 
 ! Font change settings
-URxvt.font:               xft:Monaco:size=10
-URxvt.boldfont:           xft:Monaco:size=10:Bold
+URxvt.font:           xft:Inconsolata\ for\ Powerline:MediumForPowerline:size=13:antialias=true:hinting=true,xft:PowerlineSymbols:size=13:antialias=true:hinting=true
+URxvt.imFont:         xft:Inconsolata\ for Powerline:MediumForPowerline:size=13:antialias=true:hinting=true,xft:PowerlineSymbols:size=13:antialias=true:hinting=true
+URxvt.boldFont:       xft:Inconsolata\ for Powerline:MediumForPowerline:size=13:antialias=true:hinting=true,xft:PowerlineSymbols:size=13:antialias=true:hinting=true
+URxvt.italicFont:     xft:Inconsolata\ for Powerline:MediumForPowerline:size=13:antialias=true:hinting=true,xft:PowerlineSymbols:size=13:antialias=true:hinting=true
+URxvt.boldItalicFont: xft:Inconsolata\ for Powerline:MediumForPowerline:size=13:antialias=true:hinting=true,xft:PowerlineSymbols:size=13:antialias=true:hinting=true
+
+URxvt.intensityStyles: true
+URxvt.boldMode:       false
+URxvt.skipBuiltinGlyphs: false
+URxvt.loginShell: true
 
 URxvt.keysym.C-equal:	perl:font-size:increase
 URxvt.keysym.C-minus:   perl:font-size:decrease
@@ -80,10 +92,10 @@ URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.copyCommand:  xsel -ib
 URxvt.pasteCommand: xsel -ob
 
-Xft.antialias: 1
-Xft.autohint: 0
+Xft.antialias: true
+Xft.autohint: false
 Xft.dpi: 96
-Xft.hinting: 1
+Xft.hinting: true
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
 Xft.rgba: rgb
