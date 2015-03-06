@@ -1,26 +1,26 @@
 #!/bin/bash
-# 
+#
 # Installation script which setup up an Ubuntu Trusty machine to use this
-# xmonad configuration. 
+# xmonad configuration.
 #
-# WARNING!!! 
-# * This has only been tested on a limited number of machines running 
+# WARNING!!!
+# * This has only been tested on a limited number of machines running
 #   Ubuntu 14.04 64-bit.
-# * This is not a sophisticated installation script by any stretch 
-#   of the imagination. 
-# * I take no responsibility if this overwrites any configuration settings 
-#   or otherwise messes up your system. 
+# * This is not a sophisticated installation script by any stretch
+#   of the imagination.
+# * I take no responsibility if this overwrites any configuration settings
+#   or otherwise messes up your system.
 #
-# Please review the readme file to find out exactly what it does and does not 
-# do. Or, visit the repository for more information: 
+# Please review the readme file to find out exactly what it does and does not
+# do. Or, visit the repository for more information:
 # https://github.com/cestdiego/xmonad-ubuntu
-# 
-# Author: Diego Berrocal 
-# 
-# 
+#
+# Author: Diego Berrocal
+#
+#
 # This script is heavily inspired by the one from @davidbrewer
-# 
-# 
+#
+#
 
 echo "Installation Starting\n"
 
@@ -33,7 +33,7 @@ sudo apt-get update;
 
 echo "\n Installing required packages..."
 sudo apt-get install curl nitrogen compton stalonetray moreutils consolekit ssh-askpass-gnome xbacklight ranger htop xsel \
-     acpi gimp rxvt-unicode-256color dmenu scrot mplayer variety conky sysstat xdotool dzen2 tmux gtk-chtheme ditaa -y ;
+     acpi gimp rxvt-unicode-256color dmenu scrot mplayer variety conky sysstat xdotool dzen2 tmux gtk-chtheme ditaa xclip libpoppler-glib-dev -y ;
 
 echo "\n Installing Haskell packages..."
 sudo apt-get install  ghc-mod haskell-platform ghc-dynamic -y
@@ -58,11 +58,11 @@ ln -s ~/.xmonad/.Xresources ~/.Xresources;
 echo "Symbolic Linking Compton Configuration File"
 ln -s ~/.xmonad/compton.conf ~/.config/compton.conf;
 
-sudo ln -s ~/.xmonad/scripts/custom/imgur-screenshot /usr/local/bin/imgur-screenshot 
-sudo ln -s ~/.xmonad/scripts/custom/ncmpcpp-army /usr/local/bin/ncmpcpp-army 
+sudo ln -s ~/.xmonad/scripts/custom/imgur-screenshot /usr/local/bin/imgur-screenshot
+sudo ln -s ~/.xmonad/scripts/custom/ncmpcpp-army /usr/local/bin/ncmpcpp-army
 
 # echo "Linking to customized gnome 2 configuration..."
 # mv ~/.gtkrc-2.0 ~/gtkrc-2.0.original;
 # ln -s ~/.xmonad/.gtkrc-2.0 ~/.gtkrc-2.0;
 
-sed -i "s/\/home\/io/\/home\/$USER/g" .conky_dzen scripts/*.sh xmonad.hs status_bar 
+sed -i "s/\/home\/io/\/home\/$USER/g" .conky_dzen scripts/*.sh xmonad.hs status_bar

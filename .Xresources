@@ -1,5 +1,5 @@
 ! RATPOISON COLORS
-*background:#3f3f3f
+*background:#1f1f1f
 *foreground:#e8e9ca
 
 *color0:    #232323
@@ -39,7 +39,7 @@ URxvt*matcher.button:           1
 !URxvt*matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 ! urxvt*cursorUnderline: 1
 URxvt.saveLines:                5000
-Urxvt*letterspace:              -5
+Urxvt*letterspace:              -1
 !urxvt*fading: 			10
 !urxvt*fadeColor: 		#000000	
 URxvt*cursorBlink:		true
@@ -60,13 +60,13 @@ xterm*faceName: xft:DejaVu Sans Mono for Powerline:pixelsize=14:antialias=true
 ! For Notify-send
 URxvt*urgentOnBell: true
 URxvt*visualBell:   false
-
 ! Font change settings
-URxvt.font:           xft:Inconsolata\ for\ Powerline:MediumForPowerline:size=13:antialias=true:hinting=true,xft:PowerlineSymbols:size=13:antialias=true:hinting=true
-URxvt.imFont:         xft:Inconsolata\ for Powerline:MediumForPowerline:size=13:antialias=true:hinting=true,xft:PowerlineSymbols:size=13:antialias=true:hinting=true
-URxvt.boldFont:       xft:Inconsolata\ for Powerline:MediumForPowerline:size=13:antialias=true:hinting=true,xft:PowerlineSymbols:size=13:antialias=true:hinting=true
-URxvt.italicFont:     xft:Inconsolata\ for Powerline:MediumForPowerline:size=13:antialias=true:hinting=true,xft:PowerlineSymbols:size=13:antialias=true:hinting=true
-URxvt.boldItalicFont: xft:Inconsolata\ for Powerline:MediumForPowerline:size=13:antialias=true:hinting=true,xft:PowerlineSymbols:size=13:antialias=true:hinting=true
+URxvt.font:           xft:Source Code Pro for Powerline:size=13, \ xft:PowerlineSymbols:size=9:antialias=true
+URxvt.imFont:         xft:Source Code Pro for Powerline:size=13, \ xft:PowerlineSymbols:size=9:antialias=true
+URxvt.boldFont:       xft:Source Code Pro for Powerline:size=13, \ xft:PowerlineSymbols:size=9:antialias=true
+URxvt.italicFont:     xft:Source Code Pro for Powerline:size=13, \ xft:PowerlineSymbols:size=9:antialias=true
+URxvt.boldItalicFont: xft:Source Code Pro for Powerline:size=13, \ xft:PowerlineSymbols:size=9:antialias=true
+Ⓐ
 
 URxvt.intensityStyles: true
 URxvt.boldMode:       false
