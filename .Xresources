@@ -39,7 +39,7 @@ URxvt*matcher.button:           1
 !URxvt*matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 ! urxvt*cursorUnderline: 1
 URxvt.saveLines:                5000
-Urxvt*letterspace:              -1
+Urxvt*letterspace:              -5
 !urxvt*fading: 			10
 !urxvt*fadeColor: 		#000000	
 URxvt*cursorBlink:		true
@@ -57,16 +57,23 @@ urxvt*shading: 0
 !----------------------------------------------------------------------
 xterm*faceName: xft:DejaVu Sans Mono for Powerline:pixelsize=14:antialias=true
 
+Xft.antialias: true
+Xft.autohint: false
+Xft.dpi: 96
+Xft.hinting: true
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
 ! For Notify-send
 URxvt*urgentOnBell: true
 URxvt*visualBell:   false
 ! Font change settings
-URxvt.font:           xft:Source Code Pro for Powerline:size=13, \ xft:PowerlineSymbols:size=9:antialias=true
-URxvt.imFont:         xft:Source Code Pro for Powerline:size=13, \ xft:PowerlineSymbols:size=9:antialias=true
-URxvt.boldFont:       xft:Source Code Pro for Powerline:size=13, \ xft:PowerlineSymbols:size=9:antialias=true
-URxvt.italicFont:     xft:Source Code Pro for Powerline:size=13, \ xft:PowerlineSymbols:size=9:antialias=true
-URxvt.boldItalicFont: xft:Source Code Pro for Powerline:size=13, \ xft:PowerlineSymbols:size=9:antialias=true
-Ⓐ
+URxvt.font:           xft:Source Code Pro for Powerline:size=13:hinting:false, \ xft:PowerlineSymbols:size=9:antialias=true
+! URxvt.imFont:         xft:Sauce Code Pro for Powerline:size=13, \ xft:PowerlineSymbols:size=9:antialias=true
+! URxvt.boldFont:       xft:Sauce Code Pro for Powerline:size=13, \ xft:PowerlineSymbols:size=9:antialias=true
+! URxvt.italicFont:     xft:Sauce Code Pro for Powerline:size=13, \ xft:PowerlineSymbols:size=9:antialias=true
+! URxvt.boldItalicFont: xft:Sauce Code Pro for Powerline:size=13, \ xft:PowerlineSymbols:size=9:antialias=true
+
 
 URxvt.intensityStyles: true
 URxvt.boldMode:       false
@@ -92,13 +99,6 @@ URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.copyCommand:  xsel -ib
 URxvt.pasteCommand: xsel -ob
 
-Xft.antialias: true
-Xft.autohint: false
-Xft.dpi: 96
-Xft.hinting: true
-Xft.hintstyle: hintfull
-Xft.lcdfilter: lcddefault
-Xft.rgba: rgb
 
 !----TAB MANAGEMENT----------------------------------------------------------
 ! Urxvt.tabbed.new-button:        true
