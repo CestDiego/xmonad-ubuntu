@@ -41,6 +41,9 @@ sudo apt-get install  ghc-mod haskell-platform ghc-dynamic -y
 echo "\n Installing Xmonad packages..."
 sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar -y
 
+echo "\n Installing Dependencies..."
+sudo apt-get install lm-sensors hddtemp libsensors4 -y
+
 echo "\n Creating xmonad xsession configuration...\n"
 sudo mv /usr/share/xsessions/xmonad.desktop /usr/share/xsessions/xmonad.desktop.original ;
 sudo cp ~/.xmonad/xmonad.desktop /usr/share/xsessions ;
