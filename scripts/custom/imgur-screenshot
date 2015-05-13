@@ -13,9 +13,9 @@ function is_mac() {
 imgur_anon_id="9e603f08c0e541c"
 imgur_icon_path="$HOME/Pictures/imgur.png"
 
-imgur_acct_key=""
-imgur_secret=""
-login="false"
+imgur_acct_key="eca861a2221dc5f"
+imgur_secret="743bce46fe996c7dfd692b825551f41f2526ada0"
+login="true"
 credentials_file="$HOME/.config/imgur-screenshot/credentials.conf"
 
 file_name_format="imgur-%Y_%m_%d-%H:%M:%S.png" # when using scrot, must end with .png!
@@ -30,8 +30,8 @@ if is_mac; then
   screenshot_window_command="screencapture -iWa %img"
   open_command="open %url"
 else
-  screenshot_select_command="scrot -s %img"
-  screenshot_window_command="scrot %img"
+  screenshot_select_command="shutter -s -e -n -o %img"
+  screenshot_window_command="shutter -a -e -n -o %img"
   open_command="xdg-open %url"
 fi
 open="true"

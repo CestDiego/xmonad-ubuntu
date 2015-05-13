@@ -1,24 +1,41 @@
-! RATPOISON COLORS
-*background:#1f1f1f
-*foreground:#e8e9ca
+! special
+*.foreground:   #ffffff
+*.background:   #1f1f1f
+*.cursorColor:  #fffffc
 
-*color0:    #232323
-*color1:    #8b3e2f
-*color2:    #526f33
-*color3:    #8B814C
-*color4:    #4A708B
-*color5:    #7A378B
-*color6:    #528B8B
-*color7:    #999999
+! gentsu and the nigger boys
 
-*color8:    #4c4c4c
-*color9:    #d75f00
-*color10:   #8ea433
-*color11:   #EEE685
-*color12:   #9AC0CD
-*color13:   #9F79EE
-*color14:   #79CDCD
-*color15:   #E8E9CA
+! black
+*.color0:       #1a253b
+*.color8:       #65737e
+
+! red
+*.color1:       #fa70a5
+*.color9:       #fa70a5
+
+! green
+*.color2:       #cce366
+*.color10:      #cce366
+
+! yellow
+*.color3:       #ffbe73
+*.color11:      #ffbe73
+
+! blue
+*.color4:       #33ccff
+*.color12:      #33ccff
+
+! magenta
+*.color5:       #9c67e6
+*.color13:      #9c67e6
+
+! cyan
+*.color6:       #67e6e6
+*.color14:      #67e6e6
+
+! white
+*.color7:       #ffffff
+*.color15:      #fffffe
 
 ! first disable Keycap Picture insert mode
 URxvt.iso14755:         false
@@ -36,16 +53,11 @@ URxvt.urlLauncher:          xdg-open
 URxvt.urlButton:            1
 URxvt.underlineURLs:            True
 URxvt*matcher.button:           1
-!URxvt*matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-! urxvt*cursorUnderline: 1
 URxvt.saveLines:                5000
 Urxvt*letterspace:              -5
-!urxvt*fading: 			10
-!urxvt*fadeColor: 		#000000	
 URxvt*cursorBlink:		true
 URxvt*scrollBar:		false
-URxvt*depth:			32 
-! URxvt.background:               [95]#000000
+! URxvt*depth:			32 
 URxvt*internalBorder: 		5
 URxvt*dynamicColors: on
 
@@ -112,14 +124,6 @@ URxvt.pasteCommand: xsel -ob
 ! URxvt.keysym.Control-Shift-Right: perl:tabbedex:move_tab_right
 ! URxvt.keysym.Control-n: perl:tabbedex:rename_tab
 
-
-!---------_EMAAACS BABEEEE---------------------------------------------------
-
-! Emacs.font: Monaco
-! Emacs.fontBackend: xft
-! Emacs.menuBar: off
-! Emacs.toolBar: 
-! Emacs.verticalScrollBars: off
 
 !xclock----------------------------------------------------------------------
 xclock*majorColor: #9a875f
